@@ -2,9 +2,28 @@ import requests
 import json
 import time
 
+def update_list(li, val):
+    # updates list of values used to generate a graph (for example, past 24-hour temperature).
+    # if the list is longer than 24 hours worth of data, it deletes the first value as the
+    # latest value is appended.
+
+    li.append(val)
+
+    num_datapoints = round(86400/300) # calculate the num of datapoints based on interval between API endpoint access.
+
+    if len(li) > 2:
+        del li[0]
+
+    return li
+
+
+
+
+temp_list = []
 
 loop = True
 while loop == True:
+
     response = requests.get("https://api.darksky.net/forecast/8c4e31711730f9577556ad3878ae1fd0/39.855955, -86.338426")
     status_code = response.status_code
 
@@ -28,14 +47,13 @@ while loop == True:
     windGust, windBearing.
     '''
     d1 = json_data['daily']['data'][1]
-    
+    d2 = json_data['daily']['data'][2]
+    d3 = json_data['daily']['data'][3]
+    d4 = json_data['daily']['data'][4]
+    d5 = json_data['daily']['data'][5]
 
-    '''
 
-    still need to add alerts dict here
-
-
-    '''
+    #alerts = json_data['alerts'] this needs to be setup in a try/except (cause if there's no alerts it won't exist)
 
     j = json_data['daily']['data'][2]
     print(j['temperatureHigh'])
@@ -43,6 +61,12 @@ while loop == True:
 
     print(" ")
 
-    #print(json_data['daily']['summary'])
+    print(json_data['daily']['summary'])
 
-    time.sleep(300)
+    temp_list = update_list(temp_list, current_temp)
+    print(temp_list)
+
+    
+
+    
+    time.sleep(100)
