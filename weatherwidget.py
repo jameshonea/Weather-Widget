@@ -11,7 +11,7 @@ def update_list(li, val):
 
     num_datapoints = round(86400/300) # calculate the num of datapoints based on interval between API endpoint access.
 
-    if len(li) > 2:
+    if len(li) > num_datapoints:
         del li[0]
 
     return li
@@ -20,6 +20,8 @@ def update_list(li, val):
 
 
 temp_list = []
+humid_list = []
+press_list = []
 
 loop = True
 while loop == True:
@@ -41,11 +43,15 @@ while loop == True:
 
     minute_sum = json_data['minutely']['summary']
 
-    ''' below are dictionaries containing values for each day. the needed values
+    '''
+
+    below are dictionaries containing values for each day. the needed values
     from each are time, summary, icon, precipProbability, temperatureHigh, temperatureLow,
     apparentTemperatureHigh, apparentTemperatureLow, dewPoint, humidity, pressure, windSpeed,
     windGust, windBearing.
+
     '''
+    
     d1 = json_data['daily']['data'][1]
     d2 = json_data['daily']['data'][2]
     d3 = json_data['daily']['data'][3]
@@ -55,18 +61,30 @@ while loop == True:
 
     #alerts = json_data['alerts'] this needs to be setup in a try/except (cause if there's no alerts it won't exist)
 
-    j = json_data['daily']['data'][2]
-    print(j['temperatureHigh'])
+    try:
+        alerts = json_data['alerts']
+    except:
+        pass
+
+
+
+    temp_list = update_list(temp_list, current_temp)
+    humid_list = update_list(humid_list, humidity)
+    press_list = update_list(press_list, pressure)
+
+    #j = json_data['daily']['data'][2]
+    #print(j['temperatureHigh'])
 
 
     print(" ")
-
+ 
     print(json_data['daily']['summary'])
 
-    temp_list = update_list(temp_list, current_temp)
     print(temp_list)
+    print(humid_list)
+    print(press_list)
 
     
 
     
-    time.sleep(100)
+    time.sleep(60)
