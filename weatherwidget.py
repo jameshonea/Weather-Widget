@@ -1,6 +1,7 @@
 import requests
 import json
 import time
+import winsound
 
 def update_list(li, val):
     # updates list of values used to generate a graph (for example, past 24-hour temperature).
@@ -22,6 +23,7 @@ def update_list(li, val):
 temp_list = []
 humid_list = []
 press_list = []
+alerts_check = {} # this will be used to check for new alerts each iteration
 
 loop = True
 while loop == True:
@@ -59,11 +61,22 @@ while loop == True:
     d5 = json_data['daily']['data'][5]
 
 
-    #alerts = json_data['alerts'] this needs to be setup in a try/except (cause if there's no alerts it won't exist)
-
     try:
         alerts = json_data['alerts']
-    except:
+
+        # check for new alerts
+
+        if len(alerts) > len(alerts_check):
+
+            # need to add unique sounding for tornado and severe warnings
+            # if neither of those then else clause playing lesser sound
+            
+            print("new alerts: play sound?!")
+
+            # after playing sound, update alerts_check for next iteration
+
+            alerts_check = alerts
+    except Exception:
         pass
 
 
@@ -77,6 +90,7 @@ while loop == True:
 
 
     print(" ")
+    print(json_data['currently'])
  
     print(json_data['daily']['summary'])
 
