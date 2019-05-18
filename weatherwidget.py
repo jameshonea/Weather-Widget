@@ -71,7 +71,7 @@ while loop == True:
             # need to add unique sounding for tornado and severe warnings
             # if neither of those then else clause playing lesser sound
             
-            print("new alerts: play sound?!")
+            winsound.PlaySound("severealert.wav", winsound.SND_ASYNC)
 
             # after playing sound, update alerts_check for next iteration
 
