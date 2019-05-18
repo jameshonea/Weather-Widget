@@ -24,6 +24,7 @@ temp_list = []
 humid_list = []
 press_list = []
 alerts_check = {} # this will be used to check for new alerts each iteration
+prev_sound_played = False # used to check if a sound has played recently
 
 loop = True
 while loop == True:
@@ -43,7 +44,6 @@ while loop == True:
     pressure = json_data['currently']['pressure']
     precip_prob = json_data['currently']['precipProbability']
 
-    minute_sum = json_data['minutely']['summary']
 
     '''
 
@@ -60,6 +60,7 @@ while loop == True:
     d4 = json_data['daily']['data'][4]
     d5 = json_data['daily']['data'][5]
 
+    sev_sound_played = False # flag to prevent two sounds from playing at same time
 
     try:
         alerts = json_data['alerts']
@@ -72,12 +73,33 @@ while loop == True:
             # if neither of those then else clause playing lesser sound
             
             winsound.PlaySound("severealert.wav", winsound.SND_ASYNC)
+            sev_sound_played = True
 
             # after playing sound, update alerts_check for next iteration
 
             alerts_check = alerts
     except Exception:
         pass
+
+    ''' check if a storm is approaching '''
+
+    if json_data['currently']['nearestStormDistance'] < 50:
+        if prev_sound_played == False:
+            if sev_sound_played == False:
+                winsound.PlaySound('stormalert.wav', winsound.SND_ASYNC)
+
+            counter = 15 # counter to decrease to prevent playing sound for a bit
+            prev_sound_played = True
+
+    if prev_sound_played == True:
+        if counter > 0:
+            counter = counter - 1
+            print(counter)
+        else:
+            prev_sound_played = False
+
+
+    
 
 
 
@@ -101,4 +123,4 @@ while loop == True:
     
 
     
-    time.sleep(60)
+    time.sleep(300)
