@@ -25,6 +25,8 @@ humid_list = []
 press_list = []
 alerts_check = {} # this will be used to check for new alerts each iteration
 prev_sound_played = False # used to check if a sound has played recently
+prev_storm_distance = 0 # used to check if a storm has gotten closer since last iteration
+                        # i do this to eliminate most false positives hopefully
 
 loop = True
 while loop == True:
@@ -84,12 +86,16 @@ while loop == True:
     ''' check if a storm is approaching '''
 
     if json_data['currently']['nearestStormDistance'] < 50:
-        if prev_sound_played == False:
-            if sev_sound_played == False:
-                winsound.PlaySound('stormalert.wav', winsound.SND_ASYNC)
 
-            counter = 15 # counter to decrease to prevent playing sound for a bit
-            prev_sound_played = True
+        if prev_storm_distance - json_data['currently']['nearestStormDistance'] > 0:
+            if prev_sound_played == False:
+                if sev_sound_played == False:
+                    winsound.PlaySound('stormalert.wav', winsound.SND_ASYNC)
+
+                counter = 15 # counter to decrease to prevent playing sound for a bit
+                prev_sound_played = True
+
+        prev_storm_distance = json_data['currently']['nearestStormDistance'] # sets after loop to check against value on next pass-through
 
     if prev_sound_played == True:
         if counter > 0:
@@ -97,6 +103,8 @@ while loop == True:
             print(counter)
         else:
             prev_sound_played = False
+
+    
 
 
     
