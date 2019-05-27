@@ -28,6 +28,7 @@ prev_sound_played = False # used to check if a sound has played recently
 prev_storm_distance = 0 # used to check if a storm has gotten closer since last iteration
                         # i do this to eliminate most false positives hopefully
 
+
 loop = True
 while loop == True:
 
@@ -115,20 +116,11 @@ while loop == True:
     humid_list = update_list(humid_list, humidity)
     press_list = update_list(press_list, pressure)
 
-    #j = json_data['daily']['data'][2]
-    #print(j['temperatureHigh'])
-
 
     print(" ")
     print(json_data['currently'])
  
     print(json_data['daily']['summary'])
-
-    print(temp_list)
-    print(humid_list)
-    print(press_list)
-
-    
 
     
     time.sleep(300)
