@@ -101,16 +101,20 @@ def main_loop():
     
 
     
-
+'''
 
     
 
 
+    try:
+        temp_list = update_list(temp_list, current_temp)
+        humid_list = update_list(humid_list, humidity)
+        press_list = update_list(press_list, pressure)
+    except Exception: # first pass through throws an error cause temp_list doesnt exist yet. not sure how else to do this yet.
+        temp_list = []
+        humid_list = []
+        press_list = []
 
-    temp_list = update_list(temp_list, current_temp)
-    humid_list = update_list(humid_list, humidity)
-    press_list = update_list(press_list, pressure)
-    '''
 
 
     print(" ")
@@ -118,6 +122,7 @@ def main_loop():
  
     print(json_data['daily']['summary'])
 
+'''
 temp_list = []
 humid_list = []
 press_list = []
@@ -125,6 +130,7 @@ alerts_check = {} # this will be used to check for new alerts each iteration
 prev_sound_played = False # used to check if a sound has played recently
 prev_storm_distance = 0 # used to check if a storm has gotten closer since last iteration
                         # i do this to eliminate most false positives hopefully
+                        '''
 
     
 loop = True
