@@ -20,17 +20,10 @@ def update_list(li, val):
 
 
 
-temp_list = []
-humid_list = []
-press_list = []
-alerts_check = {} # this will be used to check for new alerts each iteration
-prev_sound_played = False # used to check if a sound has played recently
-prev_storm_distance = 0 # used to check if a storm has gotten closer since last iteration
-                        # i do this to eliminate most false positives hopefully
 
 
-loop = True
-while loop == True:
+
+def main_loop():
 
     response = requests.get("https://api.darksky.net/forecast/8c4e31711730f9577556ad3878ae1fd0/39.855955, -86.338426")
     status_code = response.status_code
@@ -62,6 +55,7 @@ while loop == True:
     d3 = json_data['daily']['data'][3]
     d4 = json_data['daily']['data'][4]
     d5 = json_data['daily']['data'][5]
+    '''
 
     sev_sound_played = False # flag to prevent two sounds from playing at same time
 
@@ -84,7 +78,7 @@ while loop == True:
     except Exception:
         pass
 
-    ''' check if a storm is approaching '''
+
 
     if json_data['currently']['nearestStormDistance'] < 50:
 
@@ -104,6 +98,7 @@ while loop == True:
             print(counter)
         else:
             prev_sound_played = False
+    
 
     
 
@@ -115,12 +110,29 @@ while loop == True:
     temp_list = update_list(temp_list, current_temp)
     humid_list = update_list(humid_list, humidity)
     press_list = update_list(press_list, pressure)
+    '''
 
 
     print(" ")
     print(json_data['currently'])
  
     print(json_data['daily']['summary'])
+
+temp_list = []
+humid_list = []
+press_list = []
+alerts_check = {} # this will be used to check for new alerts each iteration
+prev_sound_played = False # used to check if a sound has played recently
+prev_storm_distance = 0 # used to check if a storm has gotten closer since last iteration
+                        # i do this to eliminate most false positives hopefully
+
+    
+loop = True
+while loop == True:
+
+    main_loop()
+
+
 
     
     time.sleep(300)
