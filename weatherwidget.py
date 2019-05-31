@@ -2,6 +2,8 @@ import requests
 import json
 import time
 import winsound
+from kivy.app import App
+from kivy.uix.label import Label
 
 def update_list(li, val):
     # updates list of values used to generate a graph (for example, past 24-hour temperature).
@@ -120,7 +122,7 @@ def main_loop():
         else:
             prev_sound_played = False
 
-'''
+
 
 
 
@@ -137,3 +139,10 @@ while loop == True:
 
     
     time.sleep(300)
+    '''
+
+class First(App):
+    def build(self):
+        return Label(text="weather test!")
+
+First().run()
