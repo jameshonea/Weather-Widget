@@ -78,7 +78,7 @@ def main_loop():
     print(json_data['daily']['summary'])
 
 
-# below code doesn't work as intended because nearestStormDistance is not accurate (sure, blame the API). Trying to find a different way to work this.
+# below code doesn't work as intended because nearestStormDistance is not accurate (sure, blame the API...). Trying to find a different way to work this.
 '''
     sev_sound_played = False # flag to prevent two sounds from playing at same time
 
