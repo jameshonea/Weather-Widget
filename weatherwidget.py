@@ -151,11 +151,25 @@ class MainView(BoxLayout):
         self.text = Label()
         self.add_widget(self.text)
 
-        Clock.schedule_interval(self.update, 5)
+        Clock.schedule_interval(self.update, 300)
 
     def update(self, dt):
-        self.text.text = str(random.randint(0,100))
-        print('hi')
+        response = requests.get("https://api.darksky.net/forecast/8c4e31711730f9577556ad3878ae1fd0/39.855955, -86.338426")
+        status_code = response.status_code
+
+        json_data = response.json()
+
+        current_temp = json_data['currently']['temperature']
+        feels_like = json_data['currently']['apparentTemperature']
+        summary = json_data['currently']['summary']
+        wind_speed = json_data['currently']['windSpeed']
+        wind_gust = json_data['currently']['windGust']
+        wind_bearing = json_data['currently']['windBearing']
+        humidity = json_data['currently']['humidity']
+        pressure = json_data['currently']['pressure']
+        precip_prob = json_data['currently']['precipProbability']
+
+        self.text.text = str(json_data['currently']['temperature'])
 
 class hello(App):
     def build(self):
