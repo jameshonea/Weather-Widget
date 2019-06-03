@@ -4,6 +4,9 @@ import time
 import winsound
 from kivy.app import App
 from kivy.uix.label import Label
+from kivy.uix.boxlayout import BoxLayout
+from kivy.clock import Clock
+import random
 
 def update_list(li, val):
     # updates list of values used to generate a graph (for example, past 24-hour temperature).
@@ -141,8 +144,21 @@ while loop == True:
     time.sleep(300)
     '''
 
-class First(App):
-    def build(self):
-        return Label(text="weather test!")
+class MainView(BoxLayout):
+    def __init__(self, **kwargs):
+        super(MainView, self).__init__(**kwargs)
 
-First().run()
+        self.text = Label()
+        self.add_widget(self.text)
+
+        Clock.schedule_interval(self.update, 5)
+
+    def update(self, dt):
+        self.text.text = str(random.randint(0,100))
+        print('hi')
+
+class hello(App):
+    def build(self):
+        return MainView()
+
+hello().run()
