@@ -4,7 +4,7 @@ import time
 import winsound
 from kivy.app import App
 from kivy.uix.label import Label
-from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.gridlayout import GridLayout
 from kivy.clock import Clock
 import random
 
@@ -144,14 +144,16 @@ while loop == True:
     time.sleep(300)
     '''
 
-class MainView(BoxLayout):
+class MainView(GridLayout):
     def __init__(self, **kwargs):
         super(MainView, self).__init__(**kwargs)
 
-        self.text = Label()
+        self.cols = 1
+        self.text = Label(text="")
         self.add_widget(self.text)
 
-        Clock.schedule_interval(self.update, 300)
+
+        Clock.schedule_interval(self.update, 5)
 
     def update(self, dt):
         response = requests.get("https://api.darksky.net/forecast/8c4e31711730f9577556ad3878ae1fd0/39.855955, -86.338426")
