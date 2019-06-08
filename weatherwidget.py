@@ -148,9 +148,60 @@ class MainView(GridLayout):
     def __init__(self, **kwargs):
         super(MainView, self).__init__(**kwargs)
 
-        self.cols = 1
-        self.text = Label(text="")
-        self.add_widget(self.text)
+        self.cols = 2
+        self.currenttemp = Label(text="test")
+        self.add_widget(self.currenttemp)
+
+        self.weathericon = Label(text='icon')
+        self.add_widget(self.weathericon)
+
+        self.left = GridLayout()
+        self.left.cols = 2
+
+        self.left.add_widget(Label(text="Feels Like: "))
+        self.feelslike = Label(text="test")
+        self.left.add_widget(self.feelslike)
+
+        self.left.add_widget(Label(text='Wind Speed: '))
+        self.windspeed = Label(text='test')
+        self.left.add_widget(self.windspeed)
+
+        self.left.add_widget(Label(text='Wind Gust: '))
+        self.windgust = Label(text='test')
+        self.left.add_widget(self.windgust)
+
+        self.add_widget(self.left)
+        
+
+
+        self.r = GridLayout()
+        self.r.cols = 3
+
+
+        self.d1left = Label(text='test')
+        self.r.add_widget(self.d1left)
+        self.d1mid = Label(text='test')
+        self.r.add_widget(self.d1mid)
+        self.d1right = Label(text='test')
+        self.r.add_widget(self.d1right)
+        
+
+        self.d2left = Label(text='test')
+        self.r.add_widget(self.d2left)
+        self.d2mid = Label(text='test')
+        self.r.add_widget(self.d2mid)
+        self.d2right = Label(text='test')
+        self.r.add_widget(self.d2right)
+
+        self.d3left = Label(text='test')
+        self.r.add_widget(self.d3left)
+        self.d3mid = Label(text='test')
+        self.r.add_widget(self.d3mid)
+        self.d3right = Label(text='test')
+        self.r.add_widget(self.d3right)
+        
+
+        self.add_widget(self.r)
 
 
         Clock.schedule_interval(self.update, 5)
@@ -171,7 +222,7 @@ class MainView(GridLayout):
         pressure = json_data['currently']['pressure']
         precip_prob = json_data['currently']['precipProbability']
 
-        self.text.text = str(json_data['currently']['temperature'])
+        self.currenttemp.text = str(json_data['currently']['temperature'])
 
 class hello(App):
     def build(self):
