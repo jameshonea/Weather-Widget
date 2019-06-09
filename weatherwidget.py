@@ -219,7 +219,7 @@ class MainView(GridLayout):
         self.add_widget(self.r)
 
         self.update(1)
-        Clock.schedule_interval(self.update, 5)
+        Clock.schedule_interval(self.update, 300)
 
     def update(self, dt):
         response = requests.get("https://api.darksky.net/forecast/8c4e31711730f9577556ad3878ae1fd0/39.855955, -86.338426")
@@ -237,13 +237,13 @@ class MainView(GridLayout):
         pressure = json_data['currently']['pressure']
         precip_prob = json_data['currently']['precipProbability']
 
-        self.currenttemp.text = str(json_data['currently']['temperature'])
-        self.feelslike.text = str(json_data['currently']['apparentTemperature'])
-        self.windspeed.text = str(json_data['currently']['windSpeed'])
-        self.windgust.text = str(json_data['currently']['windGust'])
-        self.humidity.text = str(json_data['currently']['humidity'])
-        self.pressure.text = str(json_data['currently']['pressure'])
-        self.precipprob.text = str(json_data['currently']['precipProbability'])
+        self.currenttemp.text = str(json_data['currently']['temperature']) + ' F'
+        self.feelslike.text = str(json_data['currently']['apparentTemperature']) + ' F'
+        self.windspeed.text = str(json_data['currently']['windSpeed']) + ' mph'
+        self.windgust.text = str(json_data['currently']['windGust']) + ' mph'
+        self.humidity.text = str(json_data['currently']['humidity']) + '%'
+        self.pressure.text = str(json_data['currently']['pressure']) + ' mb'
+        self.precipprob.text = str(json_data['currently']['precipProbability']) + '%'
 
         
         '''
