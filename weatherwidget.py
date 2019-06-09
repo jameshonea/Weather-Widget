@@ -7,6 +7,7 @@ from kivy.uix.label import Label
 from kivy.uix.gridlayout import GridLayout
 from kivy.clock import Clock
 import random
+from datetime import datetime
 
 def update_list(li, val):
     # updates list of values used to generate a graph (for example, past 24-hour temperature).
@@ -40,23 +41,6 @@ def main_loop():
     humidity = json_data['currently']['humidity']
     pressure = json_data['currently']['pressure']
     precip_prob = json_data['currently']['precipProbability']
-
-
-    '''
-
-    below are dictionaries containing values for each day. the needed values
-    from each are time, summary, icon, precipProbability, temperatureHigh, temperatureLow,
-    apparentTemperatureHigh, apparentTemperatureLow, dewPoint, humidity, pressure, windSpeed,
-    windGust, windBearing.
-
-    '''
-    
-    d1 = json_data['daily']['data'][1]
-    d2 = json_data['daily']['data'][2]
-    d3 = json_data['daily']['data'][3]
-    d4 = json_data['daily']['data'][4]
-    d5 = json_data['daily']['data'][5]
-
     
 
 
@@ -155,6 +139,9 @@ class MainView(GridLayout):
         self.weathericon = Label(text='icon')
         self.add_widget(self.weathericon)
 
+        self.add_widget(Label(text="  "))
+        self.add_widget(Label(text="  "))
+
         self.left = GridLayout()
         self.left.cols = 2
 
@@ -170,7 +157,21 @@ class MainView(GridLayout):
         self.windgust = Label(text='test')
         self.left.add_widget(self.windgust)
 
+        self.left.add_widget(Label(text='Humidity: '))
+        self.humidity = Label(text='test')
+        self.left.add_widget(self.humidity)
+
+        self.left.add_widget(Label(text='Pressure: '))
+        self.pressure = Label(text='test')
+        self.left.add_widget(self.pressure)
+
+        self.left.add_widget(Label(text='Precipitation Probability: '))
+        self.precipprob = Label(text='test')
+        self.left.add_widget(self.precipprob)
+
+
         self.add_widget(self.left)
+
         
 
 
@@ -199,11 +200,25 @@ class MainView(GridLayout):
         self.r.add_widget(self.d3mid)
         self.d3right = Label(text='test')
         self.r.add_widget(self.d3right)
+
+        self.d4left = Label(text='test')
+        self.r.add_widget(self.d4left)
+        self.d4mid = Label(text='test')
+        self.r.add_widget(self.d4mid)
+        self.d4right = Label(text='test')
+        self.r.add_widget(self.d4right)
+
+        self.d5left = Label(text='test')
+        self.r.add_widget(self.d5left)
+        self.d5mid = Label(text='test')
+        self.r.add_widget(self.d5mid)
+        self.d5right = Label(text='test')
+        self.r.add_widget(self.d5right)
         
 
         self.add_widget(self.r)
 
-
+        self.update(1)
         Clock.schedule_interval(self.update, 5)
 
     def update(self, dt):
@@ -223,6 +238,52 @@ class MainView(GridLayout):
         precip_prob = json_data['currently']['precipProbability']
 
         self.currenttemp.text = str(json_data['currently']['temperature'])
+        self.feelslike.text = str(json_data['currently']['apparentTemperature'])
+        self.windspeed.text = str(json_data['currently']['windSpeed'])
+        self.windgust.text = str(json_data['currently']['windGust'])
+        self.humidity.text = str(json_data['currently']['humidity'])
+        self.pressure.text = str(json_data['currently']['pressure'])
+        self.precipprob.text = str(json_data['currently']['precipProbability'])
+
+        
+        '''
+
+        below are dictionaries containing values for each day. the needed values
+        from each are time, summary, icon, precipProbability, temperatureHigh, temperatureLow,
+        apparentTemperatureHigh, apparentTemperatureLow, dewPoint, humidity, pressure, windSpeed,
+        windGust, windBearing.
+
+        '''
+    
+        d1 = json_data['daily']['data'][1]
+        print(datetime.utcfromtimestamp(int(d1['time'])).strftime('%A'))
+        d2 = json_data['daily']['data'][2]
+        d3 = json_data['daily']['data'][3]
+        d4 = json_data['daily']['data'][4]
+        d5 = json_data['daily']['data'][5]
+
+        self.d1left.text = str(datetime.utcfromtimestamp(int(d1['time'])).strftime('%A'))
+        self.d1mid.text = " "
+        self.d1right.text = str(d1['temperatureHigh'])
+
+        self.d2left.text = str(datetime.utcfromtimestamp(int(d2['time'])).strftime('%A'))
+        self.d2mid.text = " "
+        self.d2right.text = str(d2['temperatureHigh'])
+
+        self.d3left.text = str(datetime.utcfromtimestamp(int(d3['time'])).strftime('%A'))
+        self.d3mid.text = " "
+        self.d3right.text = str(d3['temperatureHigh'])
+
+        self.d4left.text = str(datetime.utcfromtimestamp(int(d4['time'])).strftime('%A'))
+        self.d4mid.text = " "
+        self.d4right.text = str(d4['temperatureHigh'])
+
+        self.d5left.text = str(datetime.utcfromtimestamp(int(d5['time'])).strftime('%A'))
+        self.d5mid.text = " "
+        self.d5right.text = str(d5['temperatureHigh'])
+
+        
+
 
 class hello(App):
     def build(self):
