@@ -133,14 +133,14 @@ class MainView(GridLayout):
         super(MainView, self).__init__(**kwargs)
 
         self.cols = 2
-        self.currenttemp = Label(text="test")
+        self.currenttemp = Label(text="test", size_hint_y=None, height=100)
         self.add_widget(self.currenttemp)
 
-        self.weathericon = Label(text='icon')
+        self.weathericon = Label(text='icon', size_hint_y=None, height=100)
         self.add_widget(self.weathericon)
 
-        self.add_widget(Label(text="  "))
-        self.add_widget(Label(text="  "))
+        #self.add_widget(Label(text="  "))
+        #self.add_widget(Label(text="  "))
 
         self.left = GridLayout()
         self.left.cols = 2
@@ -183,7 +183,13 @@ class MainView(GridLayout):
         self.r.add_widget(self.d1left)
         self.d1mid = Label(text='test')
         self.r.add_widget(self.d1mid)
-        self.d1right = Label(text='test')
+
+        self.d1right = GridLayout()
+        self.d1right.cols = 1
+        self.d1rt = Label(text='test')
+        self.d1rb = Label(text='test')
+        self.d1right.add_widget(self.d1rt)
+        self.d1right.add_widget(self.d1rb)
         self.r.add_widget(self.d1right)
         
 
@@ -191,28 +197,52 @@ class MainView(GridLayout):
         self.r.add_widget(self.d2left)
         self.d2mid = Label(text='test')
         self.r.add_widget(self.d2mid)
-        self.d2right = Label(text='test')
+
+        self.d2right = GridLayout()
+        self.d2right.cols = 1
+        self.d2rt = Label(text='test')
+        self.d2rb = Label(text='test')
+        self.d2right.add_widget(self.d2rt)
+        self.d2right.add_widget(self.d2rb)
         self.r.add_widget(self.d2right)
 
         self.d3left = Label(text='test')
         self.r.add_widget(self.d3left)
         self.d3mid = Label(text='test')
         self.r.add_widget(self.d3mid)
-        self.d3right = Label(text='test')
+
+        self.d3right = GridLayout()
+        self.d3right.cols = 1
+        self.d3rt = Label(text='test')
+        self.d3rb = Label(text='test')
+        self.d3right.add_widget(self.d3rt)
+        self.d3right.add_widget(self.d3rb)
         self.r.add_widget(self.d3right)
 
         self.d4left = Label(text='test')
         self.r.add_widget(self.d4left)
         self.d4mid = Label(text='test')
         self.r.add_widget(self.d4mid)
-        self.d4right = Label(text='test')
+        
+        self.d4right = GridLayout()
+        self.d4right.cols = 1
+        self.d4rt = Label(text='test')
+        self.d4rb = Label(text='test')
+        self.d4right.add_widget(self.d4rt)
+        self.d4right.add_widget(self.d4rb)
         self.r.add_widget(self.d4right)
 
         self.d5left = Label(text='test')
         self.r.add_widget(self.d5left)
         self.d5mid = Label(text='test')
         self.r.add_widget(self.d5mid)
-        self.d5right = Label(text='test')
+
+        self.d5right = GridLayout()
+        self.d5right.cols = 1
+        self.d5rt = Label(text='test')
+        self.d5rb = Label(text='test')
+        self.d5right.add_widget(self.d5rt)
+        self.d5right.add_widget(self.d5rb)
         self.r.add_widget(self.d5right)
         
 
@@ -264,23 +294,28 @@ class MainView(GridLayout):
 
         self.d1left.text = str(datetime.utcfromtimestamp(int(d1['time'])).strftime('%A'))
         self.d1mid.text = " "
-        self.d1right.text = str(d1['temperatureHigh'])
+        self.d1rt.text = str(d1['temperatureHigh'])
+        self.d1rb.text = str(d1['temperatureLow'])
 
         self.d2left.text = str(datetime.utcfromtimestamp(int(d2['time'])).strftime('%A'))
         self.d2mid.text = " "
-        self.d2right.text = str(d2['temperatureHigh'])
+        self.d2rt.text = str(d2['temperatureHigh'])
+        self.d2rb.text = str(d2['temperatureLow'])
 
         self.d3left.text = str(datetime.utcfromtimestamp(int(d3['time'])).strftime('%A'))
         self.d3mid.text = " "
-        self.d3right.text = str(d3['temperatureHigh'])
+        self.d3rt.text = str(d3['temperatureHigh'])
+        self.d3rb.text = str(d3['temperatureLow'])
 
         self.d4left.text = str(datetime.utcfromtimestamp(int(d4['time'])).strftime('%A'))
         self.d4mid.text = " "
-        self.d4right.text = str(d4['temperatureHigh'])
+        self.d4rt.text = str(d4['temperatureHigh'])
+        self.d4rb.text = str(d4['temperatureLow'])
 
         self.d5left.text = str(datetime.utcfromtimestamp(int(d5['time'])).strftime('%A'))
         self.d5mid.text = " "
-        self.d5right.text = str(d5['temperatureHigh'])
+        self.d5rt.text = str(d5['temperatureHigh'])
+        self.d5rb.text = str(d5['temperatureLow'])
 
         
 
