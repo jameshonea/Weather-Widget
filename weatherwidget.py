@@ -4,6 +4,7 @@ import time
 import winsound
 from kivy.app import App
 from kivy.uix.label import Label
+from kivy.uix.image import Image
 from kivy.uix.gridlayout import GridLayout
 from kivy.clock import Clock
 import random
@@ -133,10 +134,10 @@ class MainView(GridLayout):
         super(MainView, self).__init__(**kwargs)
 
         self.cols = 2
-        self.currenttemp = Label(text="test", size_hint_y=None, height=100)
+        self.currenttemp = Label(text="test", size=(50,150))
         self.add_widget(self.currenttemp)
 
-        self.weathericon = Label(text='icon', size_hint_y=None, height=100)
+        self.weathericon = Image(source='image/sunny.png', size=(50,150))
         self.add_widget(self.weathericon)
 
         #self.add_widget(Label(text="  "))
@@ -273,9 +274,23 @@ class MainView(GridLayout):
         self.windgust.text = str(json_data['currently']['windGust']) + ' mph'
         self.humidity.text = str(json_data['currently']['humidity']) + '%'
         self.pressure.text = str(json_data['currently']['pressure']) + ' mb'
-        self.precipprob.text = str(json_data['currently']['precipProbability']) + '%'
+        self.precipprob.text = str(json_data['currently']['precipProbability'])+ '%'
 
-        
+
+        # this determines the weather icon to be used.
+        if json_data['currently']['icon'] == 'clear-day':
+            self.weathericon.source = 'image/sunny.png'
+        elif json_data['currently']['icon'] == 'cloudy':
+            self.weathericon.source = 'image/cloudy.png'
+        elif json_data['currently']['icon'] == 'rain':
+            self.weathericon.source = 'image/rainy.png'
+        elif json_data['currently']['icon'] == 'partly-cloudy-day':
+            self.weathericon.source = 'image/partlycloudy.png'
+        elif json_data['currently']['icon'] == 'clear-night':
+            self.weathericon.source = 'image/nightclear.png'
+        elif json_data['currently']['icon'] == 'partly-cloudy-night':
+            self.weathericon.source = 'image/nightpartlycloudy.png'
+
         '''
 
         below are dictionaries containing values for each day. the needed values
@@ -286,7 +301,7 @@ class MainView(GridLayout):
         '''
     
         d1 = json_data['daily']['data'][1]
-        print(datetime.utcfromtimestamp(int(d1['time'])).strftime('%A'))
+        print(d1)
         d2 = json_data['daily']['data'][2]
         d3 = json_data['daily']['data'][3]
         d4 = json_data['daily']['data'][4]
