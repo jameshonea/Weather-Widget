@@ -134,8 +134,17 @@ class MainView(GridLayout):
         super(MainView, self).__init__(**kwargs)
 
         self.cols = 2
-        self.currenttemp = Label(text="test", size=(50,150))
-        self.add_widget(self.currenttemp)
+        self.topleft = GridLayout()
+        self.topleft.cols = 1
+        self.currenthilo = Label(text='test')
+        self.topleft.add_widget(self.currenthilo)
+        self.currenttemp = Label(text="test", font_size='40sp')
+        self.topleft.add_widget(self.currenttemp)
+
+        self.feelslike = Label(text='test')
+        self.topleft.add_widget(self.feelslike)
+
+        self.add_widget(self.topleft)
 
         self.weathericon = Image(source='image/sunny.png', size=(50,150))
         self.add_widget(self.weathericon)
@@ -146,9 +155,9 @@ class MainView(GridLayout):
         self.left = GridLayout()
         self.left.cols = 2
 
-        self.left.add_widget(Label(text="Feels Like: "))
-        self.feelslike = Label(text="test")
-        self.left.add_widget(self.feelslike)
+        #self.left.add_widget(Label(text="Feels Like: "))
+        #self.feelslike = Label(text="test")
+        #self.left.add_widget(self.feelslike)
 
         self.left.add_widget(Label(text='Wind Speed: '))
         self.windspeed = Label(text='test')
@@ -182,7 +191,7 @@ class MainView(GridLayout):
 
         self.d1left = Label(text='test')
         self.r.add_widget(self.d1left)
-        self.d1mid = Label(text='test')
+        self.d1mid = Image(source='image/sunny.png', size=(25,25))
         self.r.add_widget(self.d1mid)
 
         self.d1right = GridLayout()
@@ -196,7 +205,7 @@ class MainView(GridLayout):
 
         self.d2left = Label(text='test')
         self.r.add_widget(self.d2left)
-        self.d2mid = Label(text='test')
+        self.d2mid = Image(source='image/sunny.png', size=(25,25))
         self.r.add_widget(self.d2mid)
 
         self.d2right = GridLayout()
@@ -209,7 +218,7 @@ class MainView(GridLayout):
 
         self.d3left = Label(text='test')
         self.r.add_widget(self.d3left)
-        self.d3mid = Label(text='test')
+        self.d3mid = Image(source='image/sunny.png', size=(25,25))
         self.r.add_widget(self.d3mid)
 
         self.d3right = GridLayout()
@@ -222,7 +231,7 @@ class MainView(GridLayout):
 
         self.d4left = Label(text='test')
         self.r.add_widget(self.d4left)
-        self.d4mid = Label(text='test')
+        self.d4mid = Image(source='image/sunny.png', size=(25,25))
         self.r.add_widget(self.d4mid)
         
         self.d4right = GridLayout()
@@ -235,7 +244,7 @@ class MainView(GridLayout):
 
         self.d5left = Label(text='test')
         self.r.add_widget(self.d5left)
-        self.d5mid = Label(text='test')
+        self.d5mid = Image(source='image/sunny.png', size=(25,25))
         self.r.add_widget(self.d5mid)
 
         self.d5right = GridLayout()
@@ -267,12 +276,14 @@ class MainView(GridLayout):
         humidity = json_data['currently']['humidity']
         pressure = json_data['currently']['pressure']
         precip_prob = json_data['currently']['precipProbability']
+        
 
+        self.currenthilo.text = str(json_data['daily']['data'][0]['temperatureHigh']) + ' | ' + str(json_data['daily']['data'][0]['temperatureLow'])
         self.currenttemp.text = str(json_data['currently']['temperature']) + ' F'
-        self.feelslike.text = str(json_data['currently']['apparentTemperature']) + ' F'
+        self.feelslike.text = 'Feels Like ' + str(json_data['currently']['apparentTemperature']) + ' F'
         self.windspeed.text = str(json_data['currently']['windSpeed']) + ' mph'
         self.windgust.text = str(json_data['currently']['windGust']) + ' mph'
-        self.humidity.text = str(json_data['currently']['humidity']) + '%'
+        self.humidity.text = str(round(json_data['currently']['humidity']* 100)) + '%'
         self.pressure.text = str(json_data['currently']['pressure']) + ' mb'
         self.precipprob.text = str(json_data['currently']['precipProbability'])+ '%'
 
@@ -301,36 +312,36 @@ class MainView(GridLayout):
         '''
     
         d1 = json_data['daily']['data'][1]
-        print(d1)
+        print(json_data['daily']['data'])
         d2 = json_data['daily']['data'][2]
         d3 = json_data['daily']['data'][3]
         d4 = json_data['daily']['data'][4]
         d5 = json_data['daily']['data'][5]
 
         self.d1left.text = str(datetime.utcfromtimestamp(int(d1['time'])).strftime('%A'))
-        self.d1mid.text = " "
-        self.d1rt.text = str(d1['temperatureHigh'])
-        self.d1rb.text = str(d1['temperatureLow'])
+        #self.d1mid.text = " "
+        self.d1rt.text = 'High    ' + str(d1['temperatureHigh'])
+        self.d1rb.text = 'Low    ' + str(d1['temperatureLow'])
 
         self.d2left.text = str(datetime.utcfromtimestamp(int(d2['time'])).strftime('%A'))
-        self.d2mid.text = " "
-        self.d2rt.text = str(d2['temperatureHigh'])
-        self.d2rb.text = str(d2['temperatureLow'])
+        #self.d2mid.text = " "
+        self.d2rt.text = 'High    ' + str(d2['temperatureHigh'])
+        self.d2rb.text = 'Low    ' + str(d2['temperatureLow'])
 
         self.d3left.text = str(datetime.utcfromtimestamp(int(d3['time'])).strftime('%A'))
-        self.d3mid.text = " "
-        self.d3rt.text = str(d3['temperatureHigh'])
-        self.d3rb.text = str(d3['temperatureLow'])
+        #self.d3mid.text = " "
+        self.d3rt.text = 'High    ' + str(d3['temperatureHigh'])
+        self.d3rb.text = 'Low    ' + str(d3['temperatureLow'])
 
         self.d4left.text = str(datetime.utcfromtimestamp(int(d4['time'])).strftime('%A'))
-        self.d4mid.text = " "
-        self.d4rt.text = str(d4['temperatureHigh'])
-        self.d4rb.text = str(d4['temperatureLow'])
+        #self.d4mid.text = " "
+        self.d4rt.text = 'High    ' + str(d4['temperatureHigh'])
+        self.d4rb.text = 'Low    ' + str(d4['temperatureLow'])
 
         self.d5left.text = str(datetime.utcfromtimestamp(int(d5['time'])).strftime('%A'))
-        self.d5mid.text = " "
-        self.d5rt.text = str(d5['temperatureHigh'])
-        self.d5rb.text = str(d5['temperatureLow'])
+        #self.d5mid.text = " "
+        self.d5rt.text = 'High    ' + str(d5['temperatureHigh'])
+        self.d5rb.text = 'Low    ' + str(d5['temperatureLow'])
 
         
 
