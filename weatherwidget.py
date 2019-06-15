@@ -26,44 +26,6 @@ def update_list(li, val):
 
 
 
-def main_loop():
-
-    response = requests.get("https://api.darksky.net/forecast/8c4e31711730f9577556ad3878ae1fd0/39.855955, -86.338426")
-    status_code = response.status_code
-
-    json_data = response.json()
-
-    current_temp = json_data['currently']['temperature']
-    feels_like = json_data['currently']['apparentTemperature']
-    summary = json_data['currently']['summary']
-    wind_speed = json_data['currently']['windSpeed']
-    wind_gust = json_data['currently']['windGust']
-    wind_bearing = json_data['currently']['windBearing']
-    humidity = json_data['currently']['humidity']
-    pressure = json_data['currently']['pressure']
-    precip_prob = json_data['currently']['precipProbability']
-    
-
-
-    try:
-        temp_list = update_list(temp_list, current_temp)
-        humid_list = update_list(humid_list, humidity)
-        press_list = update_list(press_list, pressure)
-    except Exception:
-        # first pass through throws an error cause temp_list doesnt exist yet. not sure how else to fix this yet.
-        temp_list = []
-        humid_list = []
-        press_list = []
-
-        # set below to zero now otherwise this will also throw an error
-        prev_storm_distance = 0 
-        prev_sound_played = False
-
-
-    print(" ")
-    print(json_data['currently'])
- 
-    print(json_data['daily']['summary'])
 
 
 # below code doesn't work as intended because nearestStormDistance is not accurate (sure, blame the API...). Trying to find a different way to work this.
@@ -111,28 +73,69 @@ def main_loop():
             prev_sound_played = False
 
 
-
-
-
-
-
-
-    
-loop = True
-while loop == True:
-
-    main_loop()
-
-
-
-    
-    time.sleep(300)
     '''
 
 class MainView(GridLayout):
     def __init__(self, **kwargs):
         super(MainView, self).__init__(**kwargs)
 
+        self.cols = 1
+
+        self.t = GridLayout()
+        self.t.cols = 4
+
+        self.l = GridLayout()
+        self.l.cols = 1
+
+        self.currenttemp = Label(text='test', font_size='40sp')
+        self.l.add_widget(self.currenttemp)
+
+        self.lbot = GridLayout()
+        self.lbot.cols = 1
+        
+        self.currenthilo = Label(text='test')
+        self.lbot.add_widget(self.currenthilo)
+        self.feelslike = Label(text='test /n test')
+        self.lbot.add_widget(self.feelslike)
+        self.windspeed = Label(text='test')
+        self.lbot.add_widget(self.windspeed)
+
+        self.l.add_widget(self.lbot)
+
+        self.t.add_widget(self.l)
+
+        self.lmid = Label(text='')
+        self.t.add_widget(self.lmid)
+
+        self.rmid = Label(text='')
+        self.t.add_widget(self.rmid)
+
+        self.r = GridLayout()
+        self.r.cols = 1
+
+        self.weathericon = Image(source='image/sunny.png')
+        self.r.add_widget(self.weathericon)
+
+        self.rbot = GridLayout()
+        self.rbot.cols = 1
+
+        self.humidity = Label(text='test')
+        self.rbot.add_widget(self.humidity)
+        self.pressure = Label(text='test /n test')
+        self.rbot.add_widget(self.pressure)
+        self.placehold = Label(text='')
+        self.rbot.add_widget(self.placehold)
+
+        self.r.add_widget(self.rbot)
+
+        self.t.add_widget(self.r)
+
+        self.add_widget(self.t)
+
+        self.update(1)
+        Clock.schedule_interval(self.update, 300)
+
+        '''
         self.cols = 2
         self.topleft = GridLayout()
         self.topleft.cols = 1
@@ -141,7 +144,7 @@ class MainView(GridLayout):
         self.currenttemp = Label(text="test", font_size='40sp')
         self.topleft.add_widget(self.currenttemp)
 
-        self.feelslike = Label(text='test')
+        self.feelslike = Label(text='test /n test')
         self.topleft.add_widget(self.feelslike)
 
         self.add_widget(self.topleft)
@@ -257,9 +260,8 @@ class MainView(GridLayout):
         
 
         self.add_widget(self.r)
+        '''
 
-        self.update(1)
-        Clock.schedule_interval(self.update, 300)
 
     def update(self, dt):
         response = requests.get("https://api.darksky.net/forecast/8c4e31711730f9577556ad3878ae1fd0/39.855955, -86.338426")
@@ -282,10 +284,10 @@ class MainView(GridLayout):
         self.currenttemp.text = str(json_data['currently']['temperature']) + ' F'
         self.feelslike.text = 'Feels Like ' + str(json_data['currently']['apparentTemperature']) + ' F'
         self.windspeed.text = str(json_data['currently']['windSpeed']) + ' mph'
-        self.windgust.text = str(json_data['currently']['windGust']) + ' mph'
+        #self.windgust.text = str(json_data['currently']['windGust']) + ' mph'
         self.humidity.text = str(round(json_data['currently']['humidity']* 100)) + '%'
         self.pressure.text = str(json_data['currently']['pressure']) + ' mb'
-        self.precipprob.text = str(json_data['currently']['precipProbability'])+ '%'
+        #self.precipprob.text = str(json_data['currently']['precipProbability'])+ '%'
 
 
         # this determines the weather icon to be used.
@@ -317,6 +319,7 @@ class MainView(GridLayout):
         d3 = json_data['daily']['data'][3]
         d4 = json_data['daily']['data'][4]
         d5 = json_data['daily']['data'][5]
+        '''
 
         self.d1left.text = str(datetime.utcfromtimestamp(int(d1['time'])).strftime('%A'))
         #self.d1mid.text = " "
@@ -342,6 +345,7 @@ class MainView(GridLayout):
         #self.d5mid.text = " "
         self.d5rt.text = 'High    ' + str(d5['temperatureHigh'])
         self.d5rb.text = 'Low    ' + str(d5['temperatureLow'])
+        '''
 
         
 
