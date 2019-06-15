@@ -132,6 +132,37 @@ class MainView(GridLayout):
 
         self.add_widget(self.t)
 
+        self.b = GridLayout()
+        self.b.cols = 5
+
+        self.d1 = GridLayout()
+        self.d1.cols = 1
+
+        self.d1sp3 = Label(text='')
+        self.d1.add_widget(self.d1sp3)
+
+        self.d1day = Label(text='test')
+        self.d1.add_widget(self.d1day)
+
+        self.d1icon = Image(source='image/sunny.png')
+        self.d1.add_widget(self.d1icon)
+
+        self.d1sp1 = Label(text='')
+        self.d1.add_widget(self.d1sp1)
+
+        self.d1hi = Label(text='tet')
+        self.d1.add_widget(self.d1hi)
+
+        self.d1sp2 = Label(text='')
+        self.d1.add_widget(self.d1sp2)
+
+        self.d1lo = Label(text='tet')
+        self.d1.add_widget(self.d1lo)
+
+        self.b.add_widget(self.d1)
+
+        self.add_widget(self.b)
+
         self.update(1)
         Clock.schedule_interval(self.update, 300)
 
