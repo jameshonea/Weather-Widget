@@ -161,6 +161,115 @@ class MainView(GridLayout):
 
         self.b.add_widget(self.d1)
 
+
+        self.d2 = GridLayout()
+        self.d2.cols = 1
+
+        self.d2sp3 = Label(text='')
+        self.d2.add_widget(self.d2sp3)
+
+        self.d2day = Label(text='test')
+        self.d2.add_widget(self.d2day)
+
+        self.d2icon = Image(source='image/sunny.png')
+        self.d2.add_widget(self.d2icon)
+
+        self.d2sp1 = Label(text='')
+        self.d2.add_widget(self.d2sp1)
+
+        self.d2hi = Label(text='tet')
+        self.d2.add_widget(self.d2hi)
+
+        self.d2sp2 = Label(text='')
+        self.d2.add_widget(self.d2sp2)
+
+        self.d2lo = Label(text='tet')
+        self.d2.add_widget(self.d2lo)
+
+        self.b.add_widget(self.d2)
+
+
+        self.d3 = GridLayout()
+        self.d3.cols = 1
+
+        self.d3sp3 = Label(text='')
+        self.d3.add_widget(self.d3sp3)
+
+        self.d3day = Label(text='test')
+        self.d3.add_widget(self.d3day)
+
+        self.d3icon = Image(source='image/sunny.png')
+        self.d3.add_widget(self.d3icon)
+
+        self.d3sp1 = Label(text='')
+        self.d3.add_widget(self.d3sp1)
+
+        self.d3hi = Label(text='tet')
+        self.d3.add_widget(self.d3hi)
+
+        self.d3sp2 = Label(text='')
+        self.d3.add_widget(self.d3sp2)
+
+        self.d3lo = Label(text='tet')
+        self.d3.add_widget(self.d3lo)
+
+        self.b.add_widget(self.d3)
+
+
+        self.d4 = GridLayout()
+        self.d4.cols = 1
+
+        self.d4sp3 = Label(text='')
+        self.d4.add_widget(self.d4sp3)
+
+        self.d4day = Label(text='test')
+        self.d4.add_widget(self.d4day)
+
+        self.d4icon = Image(source='image/sunny.png')
+        self.d4.add_widget(self.d4icon)
+
+        self.d4sp1 = Label(text='')
+        self.d4.add_widget(self.d4sp1)
+
+        self.d4hi = Label(text='tet')
+        self.d4.add_widget(self.d4hi)
+
+        self.d4sp2 = Label(text='')
+        self.d4.add_widget(self.d4sp2)
+
+        self.d4lo = Label(text='tet')
+        self.d4.add_widget(self.d4lo)
+
+        self.b.add_widget(self.d4)
+
+
+        self.d5 = GridLayout()
+        self.d5.cols = 1
+
+        self.d5sp3 = Label(text='')
+        self.d5.add_widget(self.d5sp3)
+
+        self.d5day = Label(text='test')
+        self.d5.add_widget(self.d5day)
+
+        self.d5icon = Image(source='image/sunny.png')
+        self.d5.add_widget(self.d5icon)
+
+        self.d5sp1 = Label(text='')
+        self.d5.add_widget(self.d5sp1)
+
+        self.d5hi = Label(text='tet')
+        self.d5.add_widget(self.d5hi)
+
+        self.d5sp2 = Label(text='')
+        self.d5.add_widget(self.d5sp2)
+
+        self.d5lo = Label(text='tet')
+        self.d5.add_widget(self.d5lo)
+
+        self.b.add_widget(self.d5)
+
+        
         self.add_widget(self.b)
 
         self.update(1)
