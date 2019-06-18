@@ -133,7 +133,7 @@ class MainView(GridLayout):
         self.add_widget(self.t)
 
         self.b = GridLayout()
-        self.b.cols = 5
+        self.b.cols = 6
 
         self.d1 = GridLayout()
         self.d1.cols = 1
@@ -268,6 +268,33 @@ class MainView(GridLayout):
         self.d5.add_widget(self.d5lo)
 
         self.b.add_widget(self.d5)
+
+
+        self.d6 = GridLayout()
+        self.d6.cols = 1
+
+        self.d6sp3 = Label(text='')
+        self.d6.add_widget(self.d6sp3)
+
+        self.d6day = Label(text='test')
+        self.d6.add_widget(self.d6day)
+
+        self.d6icon = Image(source='image/sunny.png')
+        self.d6.add_widget(self.d6icon)
+
+        self.d6sp1 = Label(text='')
+        self.d6.add_widget(self.d6sp1)
+
+        self.d6hi = Label(text='tet')
+        self.d6.add_widget(self.d6hi)
+
+        self.d6sp2 = Label(text='')
+        self.d6.add_widget(self.d6sp2)
+
+        self.d6lo = Label(text='tet')
+        self.d6.add_widget(self.d6lo)
+
+        self.b.add_widget(self.d6)
 
         
         self.add_widget(self.b)
@@ -454,11 +481,43 @@ class MainView(GridLayout):
         '''
     
         d1 = json_data['daily']['data'][1]
-        print(json_data['daily']['data'])
         d2 = json_data['daily']['data'][2]
         d3 = json_data['daily']['data'][3]
         d4 = json_data['daily']['data'][4]
         d5 = json_data['daily']['data'][5]
+        d6 = json_data['daily']['data'][6]
+
+
+
+        self.d1day.text = str(datetime.utcfromtimestamp(int(d1['time'])).strftime('%A'))
+        #self.d1icon.source =
+        self.d1hi.text = str(d1['temperatureHigh'])
+        self.d1lo.text = str(d1['temperatureLow'])
+
+        self.d2day.text = str(datetime.utcfromtimestamp(int(d2['time'])).strftime('%A'))
+        #self.d2icon.source =
+        self.d2hi.text = str(d2['temperatureHigh'])
+        self.d2lo.text = str(d2['temperatureLow'])
+
+        self.d3day.text = str(datetime.utcfromtimestamp(int(d3['time'])).strftime('%A'))
+        #self.d3icon.source =
+        self.d3hi.text = str(d3['temperatureHigh'])
+        self.d3lo.text = str(d3['temperatureLow'])
+
+        self.d4day.text = str(datetime.utcfromtimestamp(int(d4['time'])).strftime('%A'))
+        #self.d4icon.source =
+        self.d4hi.text = str(d4['temperatureHigh'])
+        self.d4lo.text = str(d4['temperatureLow'])
+
+        self.d5day.text = str(datetime.utcfromtimestamp(int(d5['time'])).strftime('%A'))
+        #self.d5icon.source =
+        self.d5hi.text = str(d5['temperatureHigh'])
+        self.d5lo.text = str(d5['temperatureLow'])
+
+        self.d6day.text = str(datetime.utcfromtimestamp(int(d6['time'])).strftime('%A'))
+        #self.d6icon.source =
+        self.d6hi.text = str(d6['temperatureHigh'])
+        self.d6lo.text = str(d6['temperatureLow'])
         '''
 
         self.d1left.text = str(datetime.utcfromtimestamp(int(d1['time'])).strftime('%A'))
