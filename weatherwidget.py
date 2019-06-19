@@ -87,7 +87,7 @@ class MainView(GridLayout):
         self.l = GridLayout()
         self.l.cols = 1
 
-        self.currenttemp = Label(text='test', font_size='40sp')
+        self.currenttemp = Label(text='test', font_size='50sp')
         self.l.add_widget(self.currenttemp)
 
         self.lbot = GridLayout()
@@ -97,8 +97,8 @@ class MainView(GridLayout):
         self.lbot.add_widget(self.currenthilo)
         self.feelslike = Label(text='test /n test')
         self.lbot.add_widget(self.feelslike)
-        self.windspeed = Label(text='test')
-        self.lbot.add_widget(self.windspeed)
+        self.pl = Label(text='')
+        self.lbot.add_widget(self.pl)
 
         self.l.add_widget(self.lbot)
 
@@ -123,8 +123,8 @@ class MainView(GridLayout):
         self.rbot.add_widget(self.humidity)
         self.pressure = Label(text='test /n test')
         self.rbot.add_widget(self.pressure)
-        self.placehold = Label(text='')
-        self.rbot.add_widget(self.placehold)
+        self.windspeed = Label(text='')
+        self.rbot.add_widget(self.windspeed)
 
         self.r.add_widget(self.rbot)
 
@@ -141,7 +141,7 @@ class MainView(GridLayout):
         self.d1sp3 = Label(text='')
         self.d1.add_widget(self.d1sp3)
 
-        self.d1day = Label(text='test')
+        self.d1day = Label(text='test', bold=True, font_size='20sp')
         self.d1.add_widget(self.d1day)
 
         self.d1icon = Image(source='image/sunny.png')
@@ -168,7 +168,7 @@ class MainView(GridLayout):
         self.d2sp3 = Label(text='')
         self.d2.add_widget(self.d2sp3)
 
-        self.d2day = Label(text='test')
+        self.d2day = Label(text='test', bold=True, font_size='20sp')
         self.d2.add_widget(self.d2day)
 
         self.d2icon = Image(source='image/sunny.png')
@@ -195,7 +195,7 @@ class MainView(GridLayout):
         self.d3sp3 = Label(text='')
         self.d3.add_widget(self.d3sp3)
 
-        self.d3day = Label(text='test')
+        self.d3day = Label(text='test', bold=True, font_size='20sp')
         self.d3.add_widget(self.d3day)
 
         self.d3icon = Image(source='image/sunny.png')
@@ -222,7 +222,7 @@ class MainView(GridLayout):
         self.d4sp3 = Label(text='')
         self.d4.add_widget(self.d4sp3)
 
-        self.d4day = Label(text='test')
+        self.d4day = Label(text='test', bold=True, font_size='20sp')
         self.d4.add_widget(self.d4day)
 
         self.d4icon = Image(source='image/sunny.png')
@@ -249,7 +249,7 @@ class MainView(GridLayout):
         self.d5sp3 = Label(text='')
         self.d5.add_widget(self.d5sp3)
 
-        self.d5day = Label(text='test')
+        self.d5day = Label(text='test', bold=True, font_size='20sp')
         self.d5.add_widget(self.d5day)
 
         self.d5icon = Image(source='image/sunny.png')
@@ -276,7 +276,7 @@ class MainView(GridLayout):
         self.d6sp3 = Label(text='')
         self.d6.add_widget(self.d6sp3)
 
-        self.d6day = Label(text='test')
+        self.d6day = Label(text='test', bold=True, font_size='20sp')
         self.d6.add_widget(self.d6day)
 
         self.d6icon = Image(source='image/sunny.png')
@@ -302,133 +302,6 @@ class MainView(GridLayout):
         self.update(1)
         Clock.schedule_interval(self.update, 300)
 
-        '''
-        self.cols = 2
-        self.topleft = GridLayout()
-        self.topleft.cols = 1
-        self.currenthilo = Label(text='test')
-        self.topleft.add_widget(self.currenthilo)
-        self.currenttemp = Label(text="test", font_size='40sp')
-        self.topleft.add_widget(self.currenttemp)
-
-        self.feelslike = Label(text='test /n test')
-        self.topleft.add_widget(self.feelslike)
-
-        self.add_widget(self.topleft)
-
-        self.weathericon = Image(source='image/sunny.png', size=(50,150))
-        self.add_widget(self.weathericon)
-
-        #self.add_widget(Label(text="  "))
-        #self.add_widget(Label(text="  "))
-
-        self.left = GridLayout()
-        self.left.cols = 2
-
-        #self.left.add_widget(Label(text="Feels Like: "))
-        #self.feelslike = Label(text="test")
-        #self.left.add_widget(self.feelslike)
-
-        self.left.add_widget(Label(text='Wind Speed: '))
-        self.windspeed = Label(text='test')
-        self.left.add_widget(self.windspeed)
-
-        self.left.add_widget(Label(text='Wind Gust: '))
-        self.windgust = Label(text='test')
-        self.left.add_widget(self.windgust)
-
-        self.left.add_widget(Label(text='Humidity: '))
-        self.humidity = Label(text='test')
-        self.left.add_widget(self.humidity)
-
-        self.left.add_widget(Label(text='Pressure: '))
-        self.pressure = Label(text='test')
-        self.left.add_widget(self.pressure)
-
-        self.left.add_widget(Label(text='Precipitation Probability: '))
-        self.precipprob = Label(text='test')
-        self.left.add_widget(self.precipprob)
-
-
-        self.add_widget(self.left)
-
-        
-
-
-        self.r = GridLayout()
-        self.r.cols = 3
-
-
-        self.d1left = Label(text='test')
-        self.r.add_widget(self.d1left)
-        self.d1mid = Image(source='image/sunny.png', size=(25,25))
-        self.r.add_widget(self.d1mid)
-
-        self.d1right = GridLayout()
-        self.d1right.cols = 1
-        self.d1rt = Label(text='test')
-        self.d1rb = Label(text='test')
-        self.d1right.add_widget(self.d1rt)
-        self.d1right.add_widget(self.d1rb)
-        self.r.add_widget(self.d1right)
-        
-
-        self.d2left = Label(text='test')
-        self.r.add_widget(self.d2left)
-        self.d2mid = Image(source='image/sunny.png', size=(25,25))
-        self.r.add_widget(self.d2mid)
-
-        self.d2right = GridLayout()
-        self.d2right.cols = 1
-        self.d2rt = Label(text='test')
-        self.d2rb = Label(text='test')
-        self.d2right.add_widget(self.d2rt)
-        self.d2right.add_widget(self.d2rb)
-        self.r.add_widget(self.d2right)
-
-        self.d3left = Label(text='test')
-        self.r.add_widget(self.d3left)
-        self.d3mid = Image(source='image/sunny.png', size=(25,25))
-        self.r.add_widget(self.d3mid)
-
-        self.d3right = GridLayout()
-        self.d3right.cols = 1
-        self.d3rt = Label(text='test')
-        self.d3rb = Label(text='test')
-        self.d3right.add_widget(self.d3rt)
-        self.d3right.add_widget(self.d3rb)
-        self.r.add_widget(self.d3right)
-
-        self.d4left = Label(text='test')
-        self.r.add_widget(self.d4left)
-        self.d4mid = Image(source='image/sunny.png', size=(25,25))
-        self.r.add_widget(self.d4mid)
-        
-        self.d4right = GridLayout()
-        self.d4right.cols = 1
-        self.d4rt = Label(text='test')
-        self.d4rb = Label(text='test')
-        self.d4right.add_widget(self.d4rt)
-        self.d4right.add_widget(self.d4rb)
-        self.r.add_widget(self.d4right)
-
-        self.d5left = Label(text='test')
-        self.r.add_widget(self.d5left)
-        self.d5mid = Image(source='image/sunny.png', size=(25,25))
-        self.r.add_widget(self.d5mid)
-
-        self.d5right = GridLayout()
-        self.d5right.cols = 1
-        self.d5rt = Label(text='test')
-        self.d5rb = Label(text='test')
-        self.d5right.add_widget(self.d5rt)
-        self.d5right.add_widget(self.d5rb)
-        self.r.add_widget(self.d5right)
-        
-
-        self.add_widget(self.r)
-        '''
-
 
     def update(self, dt):
         response = requests.get("https://api.darksky.net/forecast/8c4e31711730f9577556ad3878ae1fd0/39.855955, -86.338426")
@@ -449,11 +322,11 @@ class MainView(GridLayout):
 
         self.currenthilo.text = str(json_data['daily']['data'][0]['temperatureHigh']) + ' | ' + str(json_data['daily']['data'][0]['temperatureLow'])
         self.currenttemp.text = str(json_data['currently']['temperature']) + ' F'
-        self.feelslike.text = 'Feels Like ' + str(json_data['currently']['apparentTemperature']) + ' F'
-        self.windspeed.text = str(json_data['currently']['windSpeed']) + ' mph'
+        self.feelslike.text = 'Feels Like: ' + str(json_data['currently']['apparentTemperature']) + ' F'
+        self.windspeed.text = 'Wind speed: ' + str(json_data['currently']['windSpeed']) + ' mph'
         #self.windgust.text = str(json_data['currently']['windGust']) + ' mph'
-        self.humidity.text = str(round(json_data['currently']['humidity']* 100)) + '%'
-        self.pressure.text = str(json_data['currently']['pressure']) + ' mb'
+        self.humidity.text = 'Humidity: ' + str(round(json_data['currently']['humidity']* 100)) + '%'
+        self.pressure.text = 'Pressure: ' + str(json_data['currently']['pressure']) + ' mb'
         #self.precipprob.text = str(json_data['currently']['precipProbability'])+ '%'
 
 
@@ -489,32 +362,32 @@ class MainView(GridLayout):
 
 
 
-        self.d1day.text = str(datetime.utcfromtimestamp(int(d1['time'])).strftime('%A'))
+        self.d1day.text = str(datetime.utcfromtimestamp(int(d1['time'])).strftime('%A'))[:3]
         #self.d1icon.source =
         self.d1hi.text = str(d1['temperatureHigh'])
         self.d1lo.text = str(d1['temperatureLow'])
 
-        self.d2day.text = str(datetime.utcfromtimestamp(int(d2['time'])).strftime('%A'))
+        self.d2day.text = str(datetime.utcfromtimestamp(int(d2['time'])).strftime('%A'))[:3]
         #self.d2icon.source =
         self.d2hi.text = str(d2['temperatureHigh'])
         self.d2lo.text = str(d2['temperatureLow'])
 
-        self.d3day.text = str(datetime.utcfromtimestamp(int(d3['time'])).strftime('%A'))
+        self.d3day.text = str(datetime.utcfromtimestamp(int(d3['time'])).strftime('%A'))[:3]
         #self.d3icon.source =
         self.d3hi.text = str(d3['temperatureHigh'])
         self.d3lo.text = str(d3['temperatureLow'])
 
-        self.d4day.text = str(datetime.utcfromtimestamp(int(d4['time'])).strftime('%A'))
+        self.d4day.text = str(datetime.utcfromtimestamp(int(d4['time'])).strftime('%A'))[:3]
         #self.d4icon.source =
         self.d4hi.text = str(d4['temperatureHigh'])
         self.d4lo.text = str(d4['temperatureLow'])
 
-        self.d5day.text = str(datetime.utcfromtimestamp(int(d5['time'])).strftime('%A'))
+        self.d5day.text = str(datetime.utcfromtimestamp(int(d5['time'])).strftime('%A'))[:3]
         #self.d5icon.source =
         self.d5hi.text = str(d5['temperatureHigh'])
         self.d5lo.text = str(d5['temperatureLow'])
 
-        self.d6day.text = str(datetime.utcfromtimestamp(int(d6['time'])).strftime('%A'))
+        self.d6day.text = str(datetime.utcfromtimestamp(int(d6['time'])).strftime('%A'))[:3]
         #self.d6icon.source =
         self.d6hi.text = str(d6['temperatureHigh'])
         self.d6lo.text = str(d6['temperatureLow'])
