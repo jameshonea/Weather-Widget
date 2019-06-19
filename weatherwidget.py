@@ -341,6 +341,7 @@ class MainView(Widget):
         #self.update(1)
         Clock.schedule_interval(self.update, 300)
     '''
+
     currenttemp = ObjectProperty(None)
     currenthilo = ObjectProperty(None)
     feelslike = ObjectProperty(None)
@@ -375,8 +376,12 @@ class MainView(Widget):
 
     def __init__(self, **kwargs):
         
+        super(MainView, self).__init__(**kwargs)
         self.update(0)
+        Clock.schedule_interval(self.update, 300)
 
+    
+    
     def update(self, dt):
         response = requests.get("https://api.darksky.net/forecast/8c4e31711730f9577556ad3878ae1fd0/39.855955, -86.338426")
         status_code = response.status_code
