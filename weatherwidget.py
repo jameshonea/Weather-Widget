@@ -9,6 +9,8 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.clock import Clock
 import random
 from datetime import datetime
+from kivy.uix.widget import Widget
+from kivy.properties import ObjectProperty
 
 def update_list(li, val):
     # updates list of values used to generate a graph (for example, past 24-hour temperature).
@@ -75,8 +77,10 @@ def update_list(li, val):
 
     '''
 
-class MainView(GridLayout):
+class MainView(Widget):
+    '''
     def __init__(self, **kwargs):
+        
         super(MainView, self).__init__(**kwargs)
 
         self.cols = 1
@@ -298,10 +302,80 @@ class MainView(GridLayout):
 
         
         self.add_widget(self.b)
+        
 
-        self.update(1)
+        currenttemp = ObjectProperty(None)
+        currenthilo = ObjectProperty(None)
+        feelslike = ObjectProperty(None)
+        weathericon = ObjectProperty(None)
+        humidity = ObjectProperty(None)
+        pressure = ObjectProperty(None)
+        windspeed  = ObjectProperty(None)
+        d1day = ObjectProperty(None)
+        d1icon = ObjectProperty(None)
+        d1hi = ObjectProperty(None)
+        d1lo = ObjectProperty(None)
+        d2day = ObjectProperty(None)
+        d2icon = ObjectProperty(None)
+        d2hi = ObjectProperty(None)
+        d2lo = ObjectProperty(None)
+        d3day = ObjectProperty(None)
+        d3icon = ObjectProperty(None)
+        d3hi = ObjectProperty(None)
+        d3lo = ObjectProperty(None)
+        d4day = ObjectProperty(None)
+        d4icon = ObjectProperty(None)
+        d4hi = ObjectProperty(None)
+        d4lo = ObjectProperty(None)
+        d5day = ObjectProperty(None)
+        d5icon = ObjectProperty(None)
+        d5hi = ObjectProperty(None)
+        d5lo = ObjectProperty(None)
+        d6day = ObjectProperty(None)
+        d6icon = ObjectProperty(None)
+        d6hi = ObjectProperty(None)
+        d6lo = ObjectProperty(None)
+
+    
+
+        #self.update(1)
         Clock.schedule_interval(self.update, 300)
+    '''
+    currenttemp = ObjectProperty(None)
+    currenthilo = ObjectProperty(None)
+    feelslike = ObjectProperty(None)
+    weathericon = ObjectProperty(None)
+    humidity = ObjectProperty(None)
+    pressure = ObjectProperty(None)
+    windspeed  = ObjectProperty(None)
+    d1day = ObjectProperty(None)
+    d1icon = ObjectProperty(None)
+    d1hi = ObjectProperty(None)
+    d1lo = ObjectProperty(None)
+    d2day = ObjectProperty(None)
+    d2icon = ObjectProperty(None)
+    d2hi = ObjectProperty(None)
+    d2lo = ObjectProperty(None)
+    d3day = ObjectProperty(None)
+    d3icon = ObjectProperty(None)
+    d3hi = ObjectProperty(None)
+    d3lo = ObjectProperty(None)
+    d4day = ObjectProperty(None)
+    d4icon = ObjectProperty(None)
+    d4hi = ObjectProperty(None)
+    d4lo = ObjectProperty(None)
+    d5day = ObjectProperty(None)
+    d5icon = ObjectProperty(None)
+    d5hi = ObjectProperty(None)
+    d5lo = ObjectProperty(None)
+    d6day = ObjectProperty(None)
+    d6icon = ObjectProperty(None)
+    d6hi = ObjectProperty(None)
+    d6lo = ObjectProperty(None)
 
+    def __init__(self, **kwargs):
+        
+        self.update(0)
 
     def update(self, dt):
         response = requests.get("https://api.darksky.net/forecast/8c4e31711730f9577556ad3878ae1fd0/39.855955, -86.338426")
@@ -418,8 +492,7 @@ class MainView(GridLayout):
         self.d5rt.text = 'High    ' + str(d5['temperatureHigh'])
         self.d5rb.text = 'Low    ' + str(d5['temperatureLow'])
         '''
-
-        
+  
 
 
 class hello(App):
