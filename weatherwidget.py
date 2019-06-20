@@ -2,6 +2,9 @@ import requests
 import json
 import time
 import winsound
+from kivy.config import Config
+Config.set('graphics', 'width',  650)
+Config.set('graphics', 'height', 400)
 from kivy.app import App
 from kivy.uix.label import Label
 from kivy.uix.image import Image

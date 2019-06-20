@@ -31,7 +31,14 @@
     d6icon: d6icon
     d6hi: d6hi
     d6lo: d6lo
-    
+
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            
     GridLayout:
         cols: 1
         size: root.width, root.height
@@ -46,6 +53,7 @@
                     id: currenttemp
                     text: "test"
                     font_size: "50sp"
+                    color: 0.310,0.443,0.62,1
 
                 GridLayout:
                     cols: 1
@@ -53,10 +61,12 @@
                     Label:
                         id: currenthilo
                         text: ""
+                        color: 0.310,0.443,0.62,1
 
                     Label:
                         id: feelslike
                         text: ""
+                        color: 0.310,0.443,0.62,1
 
                     Label:
                         text: ""
@@ -80,14 +90,17 @@
                     Label:
                         id: humidity
                         text: "t"
+                        color: 0.310,0.443,0.62,1
 
                     Label:
                         id: pressure
                         text: "t"
+                        color: 0.310,0.443,0.62,1
 
                     Label:
                         id: windspeed
                         text: "t"
+                        color: 0.310,0.443,0.62,1
 
         GridLayout:
             cols: 6
@@ -103,6 +116,7 @@
                     text: ""
                     bold: True
                     font_size: "20sp"
+                    color: 0.310,0.443,0.62,1
 
                 Image:
                     id: d1icon
@@ -114,6 +128,7 @@
                 Label:
                     id: d1hi
                     text: ""
+                    color: 0.310,0.443,0.62,1
 
                 Label:
                     text: ""
@@ -121,6 +136,7 @@
                 Label:
                     id: d1lo
                     text: ""
+                    color: 0.310,0.443,0.62,1
 
             GridLayout:
                 cols: 1
@@ -133,6 +149,7 @@
                     text: "tt"
                     bold: True
                     font_size: "20sp"
+                    color: 0.310,0.443,0.62,1
 
                 Image:
                     id: d2icon
@@ -144,6 +161,7 @@
                 Label:
                     id: d2hi
                     text: "tt"
+                    color: 0.310,0.443,0.62,1
 
                 Label:
                     text: ""
@@ -151,6 +169,7 @@
                 Label:
                     id: d2lo
                     text: "tt"
+                    color: 0.310,0.443,0.62,1
 
             GridLayout:
                 cols: 1
@@ -161,6 +180,7 @@
                 Label:
                     id: d3day
                     text: ""
+                    color: 0.310,0.443,0.62,1
                     bold: True
                     font_size: "20sp"
 
@@ -174,6 +194,7 @@
                 Label:
                     id: d3hi
                     text: ""
+                    color: 0.310,0.443,0.62,1
 
                 Label:
                     text: ""
@@ -181,6 +202,7 @@
                 Label:
                     id: d3lo
                     text: ""
+                    color: 0.310,0.443,0.62,1
 
             GridLayout:
                 cols: 1
@@ -193,6 +215,7 @@
                     text: ""
                     bold: True
                     font_size: "20sp"
+                    color: 0.310,0.443,0.62,1
 
                 Image:
                     id: d4icon
@@ -204,6 +227,7 @@
                 Label:
                     id: d4hi
                     text: ""
+                    color: 0.310,0.443,0.62,1
 
                 Label:
                     text: ""
@@ -211,6 +235,7 @@
                 Label:
                     id: d4lo
                     text: ""
+                    color: 0.310,0.443,0.62,1
 
             GridLayout:
                 cols: 1
@@ -223,6 +248,7 @@
                     text: ""
                     bold: True
                     font_size: "20sp"
+                    color: 0.310,0.443,0.62,1
 
                 Image:
                     id: d5icon
@@ -234,6 +260,7 @@
                 Label:
                     id: d5hi
                     text: ""
+                    color: 0.310,0.443,0.62,1
 
                 Label:
                     text: ""
@@ -241,6 +268,7 @@
                 Label:
                     id: d5lo
                     text: ""
+                    color: 0.310,0.443,0.62,1
 
             GridLayout:
                 cols: 1
@@ -253,6 +281,7 @@
                     text: ""
                     bold: True
                     font_size: "20sp"
+                    color: 0.310,0.443,0.62,1
 
                 Image:
                     id: d6icon
@@ -264,6 +293,7 @@
                 Label:
                     id: d6hi
                     text: ""
+                    color: 0.310,0.443,0.62,1
 
                 Label:
                     text: ""
@@ -271,4 +301,5 @@
                 Label:
                     id: d6lo
                     text: ""
+                    color: 0.310,0.443,0.62,1
                 
