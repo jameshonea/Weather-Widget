@@ -85,12 +85,17 @@
                     source: "image/sunny.png"
 
                 GridLayout:
-                    cols: 1
+                    cols: 2
+
+                    Image:
+                        source: "image/humidity.png"
 
                     Label:
                         id: humidity
                         text: "t"
                         color: 0.310,0.443,0.62,1
+                        text_size: self.size
+                        halign: 'left'
 
                     Label:
                         id: pressure
