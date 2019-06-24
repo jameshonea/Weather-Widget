@@ -87,30 +87,53 @@
                 GridLayout:
                     cols: 2
 
-                    Image:
-                        source: "image/humidity.png"
-                        size_hint_y: None
-                        height: dp(25)
-                        size_hint_x: None
-                        width: dp(25)
-                        halign: 'right'
 
                     Label:
                         id: humidity
                         text: "t"
                         color: 0.310,0.443,0.62,1
                         text_size: self.size
-                        halign: 'left'
+                        halign: "right"
+                        
+                    Image:
+                        source: "image/humidity.png"
+                        size_hint_y: None
+                        height: dp(25)
+                        size_hint_x: None
+                        width: dp(25)
+                        halign: "left"
 
                     Label:
                         id: pressure
                         text: "t"
                         color: 0.310,0.443,0.62,1
+                        text_size: self.size
+                        halign: "right"
+
+                    Image:
+                        source: "image/pressure.png"
+                        size_hint_y: None
+                        height: dp(25)
+                        size_hint_x: None
+                        width: dp(25)
+                        halign: "left"
 
                     Label:
                         id: windspeed
                         text: "t"
                         color: 0.310,0.443,0.62,1
+                        text_size: self.size
+                        halign: "right"
+
+                    Image:
+                        source: "image/wind.png"
+                        size_hint_y: None
+                        height: dp(25)
+                        size_hint_x: None
+                        width: dp(25)
+                        halign: "left"
+
+                    
 
         GridLayout:
             cols: 6

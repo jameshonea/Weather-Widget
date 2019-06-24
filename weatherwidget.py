@@ -405,10 +405,10 @@ class MainView(Widget):
         self.currenthilo.text = str(json_data['daily']['data'][0]['temperatureHigh']) + ' | ' + str(json_data['daily']['data'][0]['temperatureLow'])
         self.currenttemp.text = str(json_data['currently']['temperature']) + ' F'
         self.feelslike.text = 'Feels Like: ' + str(json_data['currently']['apparentTemperature']) + ' F'
-        self.windspeed.text = 'Wind speed: ' + str(json_data['currently']['windSpeed']) + ' mph'
+        self.windspeed.text = str(json_data['currently']['windSpeed']) + ' mph '
         #self.windgust.text = str(json_data['currently']['windGust']) + ' mph'
-        self.humidity.text = str(round(json_data['currently']['humidity']* 100)) + '%'
-        self.pressure.text = 'Pressure: ' + str(json_data['currently']['pressure']) + ' mb'
+        self.humidity.text = str(round(json_data['currently']['humidity']* 100)) + ' %  '
+        self.pressure.text = str(json_data['currently']['pressure']) + ' hPa '
         #self.precipprob.text = str(json_data['currently']['precipProbability'])+ '%'
 
 
