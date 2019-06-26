@@ -352,6 +352,7 @@ class MainView(Widget):
     humidity = ObjectProperty(None)
     pressure = ObjectProperty(None)
     windspeed  = ObjectProperty(None)
+    precipprob = ObjectProperty(None)
     d1day = ObjectProperty(None)
     d1icon = ObjectProperty(None)
     d1hi = ObjectProperty(None)
@@ -404,12 +405,12 @@ class MainView(Widget):
 
         self.currenthilo.text = str(json_data['daily']['data'][0]['temperatureHigh']) + ' | ' + str(json_data['daily']['data'][0]['temperatureLow'])
         self.currenttemp.text = str(json_data['currently']['temperature']) + ' F'
-        self.feelslike.text = 'Feels Like: ' + str(json_data['currently']['apparentTemperature']) + ' F'
+        self.feelslike.text = str(json_data['currently']['apparentTemperature']) + ' F'
         self.windspeed.text = str(json_data['currently']['windSpeed']) + ' mph '
         #self.windgust.text = str(json_data['currently']['windGust']) + ' mph'
         self.humidity.text = str(round(json_data['currently']['humidity']* 100)) + ' %  '
         self.pressure.text = str(json_data['currently']['pressure']) + ' hPa '
-        #self.precipprob.text = str(json_data['currently']['precipProbability'])+ '%'
+        self.precipprob.text = str(json_data['currently']['precipProbability'])+ '%'
 
 
         # this determines the weather icon to be used.
