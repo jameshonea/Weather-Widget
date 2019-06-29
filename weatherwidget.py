@@ -115,11 +115,60 @@ class MainView(Widget):
     d6hi = ObjectProperty(None)
     d6lo = ObjectProperty(None)
 
+    def determine_icon(self, string):
+
+        # this is used to determine the icon for each day (including current conditions).
+        if string == 'clear-day':
+            bell = 'image/sunny.png'
+        elif string == 'cloudy':
+            bell = 'image/cloudy.png'
+        elif string == 'rain':
+            bell = 'image/rainy.png'
+        elif string == 'partly-cloudy-day':
+            bell = 'image/partlycloudy.png'
+        elif string == 'clear-night':
+            bell = 'image/nightclear.png'
+        elif string == 'partly-cloudy-night':
+            bell = 'image/nightclear.png'
+        elif string == 'sleet':
+            bell = 'image/snow.png'
+        elif string == 'snow':
+            bell = 'image/snow.png'
+        elif string == 'wind':
+            bell = 'image/wind.png'
+        elif string == 'fog':
+            bell = 'image/cloudy.png'
+
+        return bell
+
     def __init__(self, **kwargs):
-        
         super(MainView, self).__init__(**kwargs)
         self.update(0)
         Clock.schedule_interval(self.update, 300)
+
+    def determine_icon(self, string):
+        if string == 'clear-day':
+            bell = 'image/sunny.png'
+        elif string == 'cloudy':
+            bell = 'image/cloudy.png'
+        elif string == 'rain':
+            bell = 'image/rainy.png'
+        elif string == 'partly-cloudy-day':
+            bell = 'image/partlycloudy.png'
+        elif string == 'clear-night':
+            bell = 'image/nightclear.png'
+        elif string == 'partly-cloudy-night':
+            bell = 'image/nightclear.png'
+        elif string == 'sleet':
+            bell = 'image/snow.png'
+        elif string == 'snow':
+            bell = 'image/snow.png'
+        elif string == 'wind':
+            bell = 'image/wind.png'
+        elif string == 'fog':
+            bell = 'image/cloudy.png'
+
+        return bell
 
     
     
@@ -149,29 +198,8 @@ class MainView(Widget):
         self.pressure.text = str(json_data['currently']['pressure']) + ' hPa '
         self.precipprob.text = str(json_data['currently']['precipProbability'])+ '%'
 
+        self.weathericon.source = str(self.determine_icon(json_data['currently']['icon']))
 
-        # this determines the weather icon to be used.
-        if json_data['currently']['icon'] == 'clear-day':
-            self.weathericon.source = 'image/sunny.png'
-        elif json_data['currently']['icon'] == 'cloudy':
-            self.weathericon.source = 'image/cloudy.png'
-        elif json_data['currently']['icon'] == 'rain':
-            self.weathericon.source = 'image/rainy.png'
-        elif json_data['currently']['icon'] == 'partly-cloudy-day':
-            self.weathericon.source = 'image/partlycloudy.png'
-        elif json_data['currently']['icon'] == 'clear-night':
-            self.weathericon.source = 'image/nightclear.png'
-        elif json_data['currently']['icon'] == 'partly-cloudy-night':
-            self.weathericon.source = 'image/nightclear.png'
-        elif json_data['currently']['icon'] == 'sleet':
-            self.weathericon.source = 'image/snow.png'
-        elif json_data['currently']['icon'] == 'snow':
-            self.weathericon.source = 'image/snow.png'
-        elif json_data['currently']['icon'] == 'wind':
-            self.weathericon.source = 'image/wind.png'
-        elif json_data['currently']['icon'] == 'fog':
-            self.weathericon.source = 'image/cloudy.png'
-        
 
         '''
 
@@ -181,7 +209,7 @@ class MainView(Widget):
         windGust, windBearing.
 
         '''
-    
+
         d1 = json_data['daily']['data'][1]
         d2 = json_data['daily']['data'][2]
         d3 = json_data['daily']['data'][3]
@@ -190,63 +218,42 @@ class MainView(Widget):
         d6 = json_data['daily']['data'][6]
 
 
-
         self.d1day.text = str(datetime.utcfromtimestamp(int(d1['time'])).strftime('%A'))[:3]
-        #self.d1icon.source =
+        self.d1icon.source = str(self.determine_icon(d1['icon']))
         self.d1hi.text = str(d1['temperatureHigh'])
         self.d1lo.text = str(d1['temperatureLow'])
 
         self.d2day.text = str(datetime.utcfromtimestamp(int(d2['time'])).strftime('%A'))[:3]
-        #self.d2icon.source =
+        self.d2icon.source = str(self.determine_icon(d2['icon']))
         self.d2hi.text = str(d2['temperatureHigh'])
         self.d2lo.text = str(d2['temperatureLow'])
 
         self.d3day.text = str(datetime.utcfromtimestamp(int(d3['time'])).strftime('%A'))[:3]
-        #self.d3icon.source =
+        self.d3icon.source = str(self.determine_icon(d3['icon']))
         self.d3hi.text = str(d3['temperatureHigh'])
         self.d3lo.text = str(d3['temperatureLow'])
 
         self.d4day.text = str(datetime.utcfromtimestamp(int(d4['time'])).strftime('%A'))[:3]
-        #self.d4icon.source =
+        self.d4icon.source = str(self.determine_icon(d4['icon']))
         self.d4hi.text = str(d4['temperatureHigh'])
         self.d4lo.text = str(d4['temperatureLow'])
 
         self.d5day.text = str(datetime.utcfromtimestamp(int(d5['time'])).strftime('%A'))[:3]
-        #self.d5icon.source =
+        self.d5icon.source = str(self.determine_icon(d5['icon']))
         self.d5hi.text = str(d5['temperatureHigh'])
         self.d5lo.text = str(d5['temperatureLow'])
 
         self.d6day.text = str(datetime.utcfromtimestamp(int(d6['time'])).strftime('%A'))[:3]
-        #self.d6icon.source =
+        self.d6icon.source = str(self.determine_icon(d6['icon']))
         self.d6hi.text = str(d6['temperatureHigh'])
         self.d6lo.text = str(d6['temperatureLow'])
-        '''
 
-        self.d1left.text = str(datetime.utcfromtimestamp(int(d1['time'])).strftime('%A'))
-        #self.d1mid.text = " "
-        self.d1rt.text = 'High    ' + str(d1['temperatureHigh'])
-        self.d1rb.text = 'Low    ' + str(d1['temperatureLow'])
+        
 
-        self.d2left.text = str(datetime.utcfromtimestamp(int(d2['time'])).strftime('%A'))
-        #self.d2mid.text = " "
-        self.d2rt.text = 'High    ' + str(d2['temperatureHigh'])
-        self.d2rb.text = 'Low    ' + str(d2['temperatureLow'])
+    
 
-        self.d3left.text = str(datetime.utcfromtimestamp(int(d3['time'])).strftime('%A'))
-        #self.d3mid.text = " "
-        self.d3rt.text = 'High    ' + str(d3['temperatureHigh'])
-        self.d3rb.text = 'Low    ' + str(d3['temperatureLow'])
 
-        self.d4left.text = str(datetime.utcfromtimestamp(int(d4['time'])).strftime('%A'))
-        #self.d4mid.text = " "
-        self.d4rt.text = 'High    ' + str(d4['temperatureHigh'])
-        self.d4rb.text = 'Low    ' + str(d4['temperatureLow'])
-
-        self.d5left.text = str(datetime.utcfromtimestamp(int(d5['time'])).strftime('%A'))
-        #self.d5mid.text = " "
-        self.d5rt.text = 'High    ' + str(d5['temperatureHigh'])
-        self.d5rb.text = 'Low    ' + str(d5['temperatureLow'])
-        '''
+                                      
   
 
 
