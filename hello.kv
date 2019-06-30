@@ -32,6 +32,7 @@
     d6icon: d6icon
     d6hi: d6hi
     d6lo: d6lo
+    forecast: forecast
 
     canvas.before:
         Color:
@@ -119,9 +120,9 @@
                     id: weathericon
                     source: "image/sunny.png"
                     size_hint_y: None
-                    height: dp(65)
+                    height: dp(25)
                     size_hint_x: None
-                    width: dp(65)
+                    width: dp(25)
 
                 GridLayout:
                     cols: 2
@@ -374,4 +375,13 @@
                     id: d6lo
                     text: ""
                     color: 0.310,0.443,0.62,1
+
+        Label:
+            size_hint_y: None
+            height: 50
+            id: forecast
+            color: 0.310,0.443,0.62,1
+            text_size: self.size
+            halign: "left"
+            text: ""
                 

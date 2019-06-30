@@ -114,6 +114,7 @@ class MainView(Widget):
     d6icon = ObjectProperty(None)
     d6hi = ObjectProperty(None)
     d6lo = ObjectProperty(None)
+    forecast = ObjectProperty(None)
 
     def determine_icon(self, string):
 
@@ -197,6 +198,7 @@ class MainView(Widget):
         self.humidity.text = str(round(json_data['currently']['humidity']* 100)) + ' %  '
         self.pressure.text = str(json_data['currently']['pressure']) + ' hPa '
         self.precipprob.text = str(json_data['currently']['precipProbability'])+ '%'
+        self.forecast.text = str(json_data['daily']['data'][0]['summary'])
 
         self.weathericon.source = str(self.determine_icon(json_data['currently']['icon']))
 
