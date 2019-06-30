@@ -115,6 +115,7 @@ class MainView(Widget):
     d6hi = ObjectProperty(None)
     d6lo = ObjectProperty(None)
     forecast = ObjectProperty(None)
+    riseset = ObjectProperty(None)
 
     def determine_icon(self, string):
 
@@ -190,14 +191,15 @@ class MainView(Widget):
         precip_prob = json_data['currently']['precipProbability']
         
 
-        self.currenthilo.text = str(json_data['daily']['data'][0]['temperatureHigh']) + ' | ' + str(json_data['daily']['data'][0]['temperatureLow'])
+        self.currenthilo.text = ' ' + str(json_data['daily']['data'][0]['temperatureHigh']) + ' | ' + str(json_data['daily']['data'][0]['temperatureLow'])
         self.currenttemp.text = str(json_data['currently']['temperature']) + ' F'
-        self.feelslike.text = str(json_data['currently']['apparentTemperature']) + ' F'
+        self.feelslike.text = ' ' + str(json_data['currently']['apparentTemperature']) + ' F'
         self.windspeed.text = str(json_data['currently']['windSpeed']) + ' mph '
         #self.windgust.text = str(json_data['currently']['windGust']) + ' mph'
         self.humidity.text = str(round(json_data['currently']['humidity']* 100)) + ' %  '
         self.pressure.text = str(json_data['currently']['pressure']) + ' hPa '
-        self.precipprob.text = str(json_data['currently']['precipProbability'])+ '%'
+        self.precipprob.text = ' ' + str(json_data['currently']['precipProbability'])+ '%'
+        #self.riseset.text = ' ' + str(datetime.utcfromtimestamp(int(json_data['daily']['data'][0]['sunsetTime'])).strftime('%H:%M'))
         self.forecast.text = str(json_data['daily']['data'][0]['summary'])
 
         self.weathericon.source = str(self.determine_icon(json_data['currently']['icon']))

@@ -1,7 +1,6 @@
 <MainView>
 
     currenttemp: currenttemp
-    currenthilo: currenthilo
     feelslike: feelslike
     weathericon: weathericon
     humidity: humidity
@@ -33,6 +32,7 @@
     d6hi: d6hi
     d6lo: d6lo
     forecast: forecast
+    currenthilo: currenthilo
 
     canvas.before:
         Color:
@@ -119,10 +119,7 @@
                 Image:
                     id: weathericon
                     source: "image/sunny.png"
-                    size_hint_y: None
-                    height: dp(25)
-                    size_hint_x: None
-                    width: dp(25)
+
 
                 GridLayout:
                     cols: 2
@@ -209,7 +206,7 @@
                 Label:
                     id: d1lo
                     text: ""
-                    color: 0.310,0.443,0.62,1
+                    color: .4,.6,.6,1
 
             GridLayout:
                 cols: 1
@@ -242,7 +239,7 @@
                 Label:
                     id: d2lo
                     text: "tt"
-                    color: 0.310,0.443,0.62,1
+                    color: .4,.6,.6,1
 
             GridLayout:
                 cols: 1
@@ -275,7 +272,7 @@
                 Label:
                     id: d3lo
                     text: ""
-                    color: 0.310,0.443,0.62,1
+                    color: .4,.6,.6,1
 
             GridLayout:
                 cols: 1
@@ -308,7 +305,7 @@
                 Label:
                     id: d4lo
                     text: ""
-                    color: 0.310,0.443,0.62,1
+                    color: .4,.6,.6,1
 
             GridLayout:
                 cols: 1
@@ -341,7 +338,7 @@
                 Label:
                     id: d5lo
                     text: ""
-                    color: 0.310,0.443,0.62,1
+                    color: .4,.6,.6,1
 
             GridLayout:
                 cols: 1
@@ -374,7 +371,7 @@
                 Label:
                     id: d6lo
                     text: ""
-                    color: 0.310,0.443,0.62,1
+                    color: .4,.6,.6,1
 
         Label:
             size_hint_y: None
