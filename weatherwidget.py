@@ -27,6 +27,8 @@ def update_list(li, val):
     if len(li) > num_datapoints:
         del li[0]
 
+    print(li)
+
     return li
 
 
@@ -148,6 +150,8 @@ class MainView(Widget):
         self.update(0)
         Clock.schedule_interval(self.update, 300)
 
+        self.pressure_list = []
+
     def determine_icon(self, string):
         if string == 'clear-day':
             bell = 'image/sunny.png'
@@ -175,82 +179,88 @@ class MainView(Widget):
     
     
     def update(self, dt):
-        response = requests.get("https://api.darksky.net/forecast/8c4e31711730f9577556ad3878ae1fd0/39.855955, -86.338426")
-        status_code = response.status_code
+        try:
+            response = requests.get("https://api.darksky.net/forecast/8c4e31711730f9577556ad3878ae1fd0/39.855955, -86.338426")
+            status_code = response.status_code
 
-        json_data = response.json()
+            json_data = response.json()
 
-        current_temp = json_data['currently']['temperature']
-        feels_like = json_data['currently']['apparentTemperature']
-        summary = json_data['currently']['summary']
-        wind_speed = json_data['currently']['windSpeed']
-        wind_gust = json_data['currently']['windGust']
-        wind_bearing = json_data['currently']['windBearing']
-        humidity = json_data['currently']['humidity']
-        pressure = json_data['currently']['pressure']
-        precip_prob = json_data['currently']['precipProbability']
+            current_temp = json_data['currently']['temperature']
+            feels_like = json_data['currently']['apparentTemperature']
+            summary = json_data['currently']['summary']
+            wind_speed = json_data['currently']['windSpeed']
+            wind_gust = json_data['currently']['windGust']
+            wind_bearing = json_data['currently']['windBearing']
+            humidity = json_data['currently']['humidity']
+            pressure = json_data['currently']['pressure']
+            precip_prob = json_data['currently']['precipProbability']
+            
+
+            self.currenthilo.text = ' ' + str(json_data['daily']['data'][0]['temperatureHigh']) + ' | ' + str(json_data['daily']['data'][0]['temperatureLow'])
+            self.currenttemp.text = str(json_data['currently']['temperature']) + ' F'
+            self.feelslike.text = ' ' + str(json_data['currently']['apparentTemperature']) + ' F'
+            self.windspeed.text = str(json_data['currently']['windSpeed']) + ' mph '
+            #self.windgust.text = str(json_data['currently']['windGust']) + ' mph'
+            self.humidity.text = str(round(json_data['currently']['humidity']* 100)) + ' %  '
+            self.pressure.text = str(json_data['currently']['pressure']) + ' hPa '
+            self.precipprob.text = ' ' + str(json_data['currently']['precipProbability'])+ '%'
+            #self.riseset.text = ' ' + str(datetime.utcfromtimestamp(int(json_data['daily']['data'][0]['sunsetTime'])).strftime('%H:%M'))
+            self.forecast.text = str(json_data['daily']['data'][0]['summary'])
+
+            self.weathericon.source = str(self.determine_icon(json_data['currently']['icon']))
+
+
+            '''
+
+            below are dictionaries containing values for each day. the needed values
+            from each are time, summary, icon, precipProbability, temperatureHigh, temperatureLow,
+            apparentTemperatureHigh, apparentTemperatureLow, dewPoint, humidity, pressure, windSpeed,
+            windGust, windBearing.
+
+            '''
+
+            d1 = json_data['daily']['data'][1]
+            d2 = json_data['daily']['data'][2]
+            d3 = json_data['daily']['data'][3]
+            d4 = json_data['daily']['data'][4]
+            d5 = json_data['daily']['data'][5]
+            d6 = json_data['daily']['data'][6]
+
+
+            self.d1day.text = str(datetime.utcfromtimestamp(int(d1['time'])).strftime('%A'))[:3]
+            self.d1icon.source = str(self.determine_icon(d1['icon']))
+            self.d1hi.text = str(d1['temperatureHigh'])
+            self.d1lo.text = str(d1['temperatureLow'])
+
+            self.d2day.text = str(datetime.utcfromtimestamp(int(d2['time'])).strftime('%A'))[:3]
+            self.d2icon.source = str(self.determine_icon(d2['icon']))
+            self.d2hi.text = str(d2['temperatureHigh'])
+            self.d2lo.text = str(d2['temperatureLow'])
+
+            self.d3day.text = str(datetime.utcfromtimestamp(int(d3['time'])).strftime('%A'))[:3]
+            self.d3icon.source = str(self.determine_icon(d3['icon']))
+            self.d3hi.text = str(d3['temperatureHigh'])
+            self.d3lo.text = str(d3['temperatureLow'])
+
+            self.d4day.text = str(datetime.utcfromtimestamp(int(d4['time'])).strftime('%A'))[:3]
+            self.d4icon.source = str(self.determine_icon(d4['icon']))
+            self.d4hi.text = str(d4['temperatureHigh'])
+            self.d4lo.text = str(d4['temperatureLow'])
+
+            self.d5day.text = str(datetime.utcfromtimestamp(int(d5['time'])).strftime('%A'))[:3]
+            self.d5icon.source = str(self.determine_icon(d5['icon']))
+            self.d5hi.text = str(d5['temperatureHigh'])
+            self.d5lo.text = str(d5['temperatureLow'])
+
+            self.d6day.text = str(datetime.utcfromtimestamp(int(d6['time'])).strftime('%A'))[:3]
+            self.d6icon.source = str(self.determine_icon(d6['icon']))
+            self.d6hi.text = str(d6['temperatureHigh'])
+            self.d6lo.text = str(d6['temperatureLow'])
+
+        except Exception:
+            pass
+
         
-
-        self.currenthilo.text = ' ' + str(json_data['daily']['data'][0]['temperatureHigh']) + ' | ' + str(json_data['daily']['data'][0]['temperatureLow'])
-        self.currenttemp.text = str(json_data['currently']['temperature']) + ' F'
-        self.feelslike.text = ' ' + str(json_data['currently']['apparentTemperature']) + ' F'
-        self.windspeed.text = str(json_data['currently']['windSpeed']) + ' mph '
-        #self.windgust.text = str(json_data['currently']['windGust']) + ' mph'
-        self.humidity.text = str(round(json_data['currently']['humidity']* 100)) + ' %  '
-        self.pressure.text = str(json_data['currently']['pressure']) + ' hPa '
-        self.precipprob.text = ' ' + str(json_data['currently']['precipProbability'])+ '%'
-        #self.riseset.text = ' ' + str(datetime.utcfromtimestamp(int(json_data['daily']['data'][0]['sunsetTime'])).strftime('%H:%M'))
-        self.forecast.text = str(json_data['daily']['data'][0]['summary'])
-
-        self.weathericon.source = str(self.determine_icon(json_data['currently']['icon']))
-
-
-        '''
-
-        below are dictionaries containing values for each day. the needed values
-        from each are time, summary, icon, precipProbability, temperatureHigh, temperatureLow,
-        apparentTemperatureHigh, apparentTemperatureLow, dewPoint, humidity, pressure, windSpeed,
-        windGust, windBearing.
-
-        '''
-
-        d1 = json_data['daily']['data'][1]
-        d2 = json_data['daily']['data'][2]
-        d3 = json_data['daily']['data'][3]
-        d4 = json_data['daily']['data'][4]
-        d5 = json_data['daily']['data'][5]
-        d6 = json_data['daily']['data'][6]
-
-
-        self.d1day.text = str(datetime.utcfromtimestamp(int(d1['time'])).strftime('%A'))[:3]
-        self.d1icon.source = str(self.determine_icon(d1['icon']))
-        self.d1hi.text = str(d1['temperatureHigh'])
-        self.d1lo.text = str(d1['temperatureLow'])
-
-        self.d2day.text = str(datetime.utcfromtimestamp(int(d2['time'])).strftime('%A'))[:3]
-        self.d2icon.source = str(self.determine_icon(d2['icon']))
-        self.d2hi.text = str(d2['temperatureHigh'])
-        self.d2lo.text = str(d2['temperatureLow'])
-
-        self.d3day.text = str(datetime.utcfromtimestamp(int(d3['time'])).strftime('%A'))[:3]
-        self.d3icon.source = str(self.determine_icon(d3['icon']))
-        self.d3hi.text = str(d3['temperatureHigh'])
-        self.d3lo.text = str(d3['temperatureLow'])
-
-        self.d4day.text = str(datetime.utcfromtimestamp(int(d4['time'])).strftime('%A'))[:3]
-        self.d4icon.source = str(self.determine_icon(d4['icon']))
-        self.d4hi.text = str(d4['temperatureHigh'])
-        self.d4lo.text = str(d4['temperatureLow'])
-
-        self.d5day.text = str(datetime.utcfromtimestamp(int(d5['time'])).strftime('%A'))[:3]
-        self.d5icon.source = str(self.determine_icon(d5['icon']))
-        self.d5hi.text = str(d5['temperatureHigh'])
-        self.d5lo.text = str(d5['temperatureLow'])
-
-        self.d6day.text = str(datetime.utcfromtimestamp(int(d6['time'])).strftime('%A'))[:3]
-        self.d6icon.source = str(self.determine_icon(d6['icon']))
-        self.d6hi.text = str(d6['temperatureHigh'])
-        self.d6lo.text = str(d6['temperatureLow'])
 
         
 
